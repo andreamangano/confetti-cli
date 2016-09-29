@@ -9,6 +9,7 @@
   "bin": {
     "confetti": "./bin/index.js"
   },
+  "repository": "andreamangano/confetti-cli",
   "author": "Andrea Mangano <andreaman87@gmail.com> (http://andreamangano.com)",
   "license": "ISC",
   "dependencies": {
