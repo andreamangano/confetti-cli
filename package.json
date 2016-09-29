@@ -1,0 +1,30 @@
+{
+  "name": "confetti-cli",
+  "version": "0.0.6",
+  "description": "Command line interface for Confetti.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "confetti": "./bin/index.js"
+  },
+  "author": "Andrea Mangano <andreaman87@gmail.com> (http://andreamangano.com)",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "commander": "^2.9.0",
+    "empty-dir": "^0.2.1",
+    "is-there": "^4.3.3",
+    "nodegit": "^0.16.0"
+  },
+  "keywords": [
+    "website",
+    "presentation",
+    "framework",
+    "confetti",
+    "cli",
+    "speaker",
+    "slides"
+  ]
+}
