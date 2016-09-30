@@ -27,7 +27,7 @@ exports.desc = 'Initialize the speaker deck folder';
 
 exports.builder = {
   dir: {
-    default: '.'
+    default: './desk'
   }
 };
 
