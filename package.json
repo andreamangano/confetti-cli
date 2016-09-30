@@ -1,6 +1,6 @@
 {
   "name": "confetti-cli",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Command line interface for Confetti.",
   "main": "index.js",
   "scripts": {
