@@ -6,9 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin": {
-    "confetti": "./bin/index.js"
-  },
   "repository": "andreamangano/confetti-cli",
   "author": "Andrea Mangano <andreaman87@gmail.com> (http://andreamangano.com)",
   "license": "ISC",
@@ -17,7 +14,14 @@
     "commander": "^2.9.0",
     "empty-dir": "^0.2.1",
     "is-there": "^4.3.3",
-    "nodegit": "^0.16.0"
+    "nodegit": "^0.16.0",
+    "yargs": "^5.0.0"
+  },
+  "files": [
+    "src/"
+  ],
+  "bin": {
+    "confetti": "src/index.js"
   },
   "keywords": [
     "website",
