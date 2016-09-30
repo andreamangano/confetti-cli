@@ -20,7 +20,8 @@ var cloneStarter = function ( folder ) {
   } );
 };
 
-// Commad init
+// Init Command
+//-------------
 exports.command = 'init [dir]';
 
 exports.desc = 'Initialize the speaker deck folder';
