@@ -16,6 +16,7 @@ exports.command = 'server';
 exports.desc = 'Serve the ./build folder';
 
 exports.handler = function ( argv ) {
+  shell.cd(cwd());
   console.log(noticeStyle('Serve the build folder...'));
   shell.exec('npm run serve');
 };
