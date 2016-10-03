@@ -1,22 +1,28 @@
 'use strict';
 
 const shell = require("shelljs");
-const STARTER_REPOSITORY = 'https://github.com/andreamangano/confetti-starter.git';
 const IsThere = require( "is-there" );
 const emptyDir = require( 'empty-dir' );
 const chalk = require( 'chalk' );
+const config = require('../config.js');
 
 var errorStyle = chalk.bold.red;
-var successStyle = chalk.bold.green;
+var noticeStyle = chalk.bold.gray;
 
-var cloneStarter = function ( folder ) {
-  console.log( successStyle( "Create folder " + folder + '...' ) );
-  shell.mkdir('-p', folder);
-  shell.cd(folder);
-  console.log( successStyle( "Clone confetti-starter repository into "+ folder + "..." ) );
+const STARTER_REPOSITORY = config.STARTER_REPOSITORY;
+const STARTER_REPOSITORY_NAME = config.STARTER_REPOSITORY_NAME;
+const STARTER_FOLDER = config.STARTER_FOLDER;
+
+
+var cloneStarter = function () {
+  console.log( noticeStyle( "Create folder " + STARTER_FOLDER + '...' ) );
+  shell.mkdir('-p', STARTER_FOLDER);
+  shell.cd(STARTER_FOLDER);
+  console.log( noticeStyle( "Clone confetti-starter repository into "+ STARTER_FOLDER + "..." ) );
   shell.exec("git clone " + STARTER_REPOSITORY);
-  shell.cd('./confetti-starter');
-  console.log( successStyle( "Install repository dependencies..." ) );
+  shell.cd(STARTER_REPOSITORY_NAME);
+  console.log( noticeStyle( "Install repository dependencies..." ) );
+  console.log( noticeStyle( "It might take several minutes..." ) );
   shell.exec("npm install");
 };
 
@@ -26,35 +32,28 @@ exports.command = 'init [dir]';
 
 exports.desc = 'Initialize the speaker deck folder';
 
-exports.builder = {
-  dir: {
-    default: './desk'
-  }
-};
-
 exports.handler = function ( argv ) {
 
-  var folder = argv.dir;
-  var folderExists = IsThere( folder );
+  var folderExists = IsThere( STARTER_FOLDER );
 
   // Check if the folder exists.
   if ( folderExists ) {
 
     // Check if the folder is empty
-    emptyDir( folder, function ( err, result ) {
+    emptyDir( STARTER_FOLDER, function ( err, result ) {
 
       if ( err ) {
         console.error( errorStyle( err ) );
       } else {
         // Folder is empty
         if ( result ) {
-          cloneStarter( folder );
+          cloneStarter( STARTER_FOLDER );
         } else { // Folder is not empty
-          console.log( errorStyle( 'Directory already exists and it\'s not empty. Change the <folder> name or remove it.' ) );
+          console.log( errorStyle( 'Directory already exists and it\'s not empty. Change the ${STARTER_FOLDER} name or remove it.' ) );
         }
       }
     } );
   } else { // The folder doesn't exists
-    cloneStarter( folder );
+    cloneStarter( STARTER_FOLDER );
   }
 };
