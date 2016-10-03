@@ -1,8 +1,7 @@
 'use strict';
 
-const nodegit = require( 'nodegit' );
+const shell = require("shelljs");
 const STARTER_REPOSITORY = 'https://github.com/andreamangano/confetti-starter.git';
-// const pkg = require( '../package.json' );
 const path = require( 'path' );
 const IsThere = require( "is-there" );
 const emptyDir = require( 'empty-dir' );
@@ -11,13 +10,12 @@ const chalk = require( 'chalk' );
 var errorStyle = chalk.bold.red;
 var successStyle = chalk.bold.green;
 
-
 var cloneStarter = function ( folder ) {
-  nodegit.Clone( STARTER_REPOSITORY, folder, {} ).then( function ( repo ) {
-    console.log( successStyle( "Cloned " + path.basename( STARTER_REPOSITORY ) + " to " + repo.workdir() ) );
-  } ).catch( function ( err ) {
-    console.log( errorStyle( err ) );
-  } );
+  console.log( successStyle( "Creating a folder " + folder + '...' ) );
+  shell.mkdir('-p', folder);
+  shell.cd(folder);
+  console.log( successStyle( "Cloning confetti-starter repository..." ) );
+  shell.exec("git clone " + STARTER_REPOSITORY);
 };
 
 // Init Command
