@@ -2,7 +2,6 @@
 
 const shell = require("shelljs");
 const STARTER_REPOSITORY = 'https://github.com/andreamangano/confetti-starter.git';
-const path = require( 'path' );
 const IsThere = require( "is-there" );
 const emptyDir = require( 'empty-dir' );
 const chalk = require( 'chalk' );
@@ -11,11 +10,14 @@ var errorStyle = chalk.bold.red;
 var successStyle = chalk.bold.green;
 
 var cloneStarter = function ( folder ) {
-  console.log( successStyle( "Creating a folder " + folder + '...' ) );
+  console.log( successStyle( "Create folder " + folder + '...' ) );
   shell.mkdir('-p', folder);
   shell.cd(folder);
-  console.log( successStyle( "Cloning confetti-starter repository..." ) );
+  console.log( successStyle( "Clone confetti-starter repository into "+ folder + "..." ) );
   shell.exec("git clone " + STARTER_REPOSITORY);
+  shell.cd('./confetti-starter');
+  console.log( successStyle( "Install repository dependencies..." ) );
+  shell.exec("npm install");
 };
 
 // Init Command
