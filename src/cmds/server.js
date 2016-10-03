@@ -9,9 +9,6 @@ const config = require('../config.js');
 
 const chalk = require( 'chalk' );
 
-const STARTER_FOLDER = config.STARTER_FOLDER;
-const STARTER_REPOSITORY_NAME = config.STARTER_REPOSITORY_NAME;
-
 var noticeStyle = chalk.bold.yellow;
 
 // Serve Command
@@ -21,8 +18,8 @@ exports.command = 'server';
 exports.desc = 'Serve the ./build folder';
 
 exports.handler = function ( argv ) {
-  shell.cd(STARTER_FOLDER);
-  shell.cd(STARTER_REPOSITORY_NAME);
+  shell.cd(config.STARTER_FOLDER);
+  shell.cd(config.STARTER_REPOSITORY_NAME);
   console.log(noticeStyle('Serve the build folder...'));
   shell.exec('npm run serve');
 };
