@@ -1,6 +1,6 @@
 {
   "name": "confetti-cli",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Command line interface for Confetti.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
