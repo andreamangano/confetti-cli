@@ -28,7 +28,13 @@ var cloneStarter = function () {
 
   // Install default theme
   shell.cd(config.THEMES_FOLDER);
-  shell.exec( "git clone " + config.DEFAULT_THEME_REPOSITORY );
+  shell.exec( "git clone " + config.DEFAULT_THEME.repository );
+
+  // Install theme dependencies
+  console.log( noticeStyle( "Install theme dependencies..." ) );
+  console.log( noticeStyle( "It might take several minutes..." ) );
+  shell.cd(config.THEME_PREFIX + config.DEFAULT_THEME.name);
+  shell.exec( "npm install" );
 };
 
 // Init Command
