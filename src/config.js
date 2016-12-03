@@ -1,14 +1,14 @@
 'use strict';
-const theme_prefix = 'confetti-theme-';
+const THEME_PREFIX = 'confetti-theme-';
 // List of official themes
 const official_themes = {
   lena: {
     name: 'lena',
-    repository: 'https://github.com/andreamangano/' + theme_prefix + 'lena.git'
+    repository: `https://github.com/andreamangano/${THEME_PREFIX}lena.git`
   },
   tangerine: {
     name: 'tangerine',
-    repository: 'https://github.com/andreamangano/' + theme_prefix + 'tangerine.git'
+    repository: `https://github.com/andreamangano/${THEME_PREFIX}tangerine.git`
   }
 };
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
   STARTER_REPOSITORY_NAME: 'confetti-starter',
   STARTER_FOLDER: './desk',
   THEMES_FOLDER: 'src/themes',
-  THEME_PREFIX: theme_prefix,
-  DEFAULT_THEME: official_themes.lena,
+  THEME_PREFIX,
+  DEFAULT_THEME: official_themes.tangerine,
   OFFICIAL_THEMES: official_themes
 };

@@ -6,7 +6,7 @@ import chalk from 'chalk';
 import config from './../config';
 const errorStyle = chalk.bold.red;
 const noticeStyle = chalk.bold.gray;
-const cloneStarter = () => {
+const cloneStarter = config => {
   // Create starter folder
   console.log(noticeStyle(`Create folder ${config.STARTER_FOLDER}...`));
   shell.mkdir('-p', config.STARTER_FOLDER);
@@ -41,7 +41,7 @@ exports.handler = argv => {
       if (err) {
         console.error(errorStyle(err));
       } else if (result) {
-        cloneStarter(config.STARTER_FOLDER);
+        cloneStarter(config);
       } else { // Folder is not empty
         console.log(errorStyle(`Directory already exists and it's not empty. Change the ${config.STARTER_FOLDER} name or remove it.`));
       }
