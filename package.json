@@ -32,7 +32,7 @@
     "bin/"
   ],
   "bin": {
-    "confetti": "./lib/index.js"
+    "confetti": "./bin/index.js"
   },
   "babel": {
     "presets": [
