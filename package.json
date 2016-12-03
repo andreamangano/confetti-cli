@@ -3,7 +3,9 @@
   "version": "0.0.15",
   "description": "Command line interface for Confetti.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf ./bin/*",
+    "lint": "./node_modules/.bin/eslint ./src",
+    "compile": "npm run clean && npm run lint && babel -d bin/ src/"
   },
   "repository": "andreamangano/confetti-cli",
   "author": "Andrea Mangano <andreaman87@gmail.com> (http://andreamangano.com)",
@@ -17,11 +19,25 @@
     "shelljs": "^0.7.4",
     "yargs": "^5.0.0"
   },
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.17.0",
+    "babel-preset-es2015": "^6.16.0",
+    "eslint": "^3.10.2",
+    "eslint-config-xo-space": "^0.15.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "rimraf": "^2.2.8"
+  },
   "files": [
-    "src/"
+    "bin/"
   ],
   "bin": {
-    "confetti": "src/index.js"
+    "confetti": "./lib/index.js"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   },
   "keywords": [
     "website",

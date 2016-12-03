@@ -1,7 +1,8 @@
 'use strict';
-const theme_prefix = 'confetti-theme-';
+
+var theme_prefix = 'confetti-theme-';
 // List of official themes
-const official_themes = {
+var official_themes = {
   lena: {
     name: 'lena',
     repository: 'https://github.com/andreamangano/' + theme_prefix + 'lena.git'

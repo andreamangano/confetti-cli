@@ -1,7 +1,8 @@
 'use strict';
+
 exports.command = 'theme <command>';
 exports.desc = 'Manage set of themes';
-exports.builder = yargs => {
+exports.builder = function (yargs) {
   return yargs.commandDir('theme_cmds');
 };
-exports.handler = argv => {};
+exports.handler = function (argv) {};
