@@ -1,6 +1,6 @@
 {
   "name": "confetti-cli",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Command line interface for Confetti.",
   "scripts": {
     "clean": "rimraf ./bin/*",
