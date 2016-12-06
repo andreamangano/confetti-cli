@@ -7,38 +7,52 @@ import chalk from 'chalk';
 import config from './../config';
 const errorStyle = chalk.bold.red;
 const noticeStyle = chalk.bold.gray;
+const successStyle = chalk.bold.green;
+const installDependencies = subject => {
+  if (shell.exec('npm install').code !== 0) {
+    console.error(errorStyle('Error occurs during the dependencies'
+      + ' installation.'));
+    shell.exit(1);
+  }
+  console.log(successStyle(`${subject} dependencies installed.`));
+};
 /*
  Method for cloning the starter repository
  and installing its npm dependencies
  */
-const cloneStarter = settings => {
-  // Create starter folder
-  console.log(noticeStyle(`Create folder ${settings.STARTER_FOLDER}...`));
-  shell.mkdir('-p', settings.STARTER_FOLDER);
-  shell.cd(settings.STARTER_FOLDER);
+const cloneStarter = config => {
+  shell.cd(config.STARTER_FOLDER);
   // Clone the confetti-starter repository
-  console.log(noticeStyle(`Clone confetti-starter repository into ${settings.STARTER_FOLDER}...`));
-  shell.exec(`git clone ${settings.STARTER_REPOSITORY}`);
-  shell.cd(settings.STARTER_REPOSITORY_NAME);
+  console.log(noticeStyle(`Clone confetti-starter repository into ${config.STARTER_FOLDER}...`));
+  if (shell.exec(`git clone ${config.STARTER_REPOSITORY}`).code !== 0) {
+    console.error(errorStyle(`Error: Cloning repository ${config.STARTER_REPOSITORY} failed`));
+    shell.exit(1);
+  }
+  console.log(successStyle(`${config.STARTER_REPOSITORY} repository cloned.`));
+  shell.cd(config.STARTER_REPOSITORY_NAME);
   // Install repository dependencies
   console.log(noticeStyle('Install repository dependencies...'));
   console.log(noticeStyle('It might take several minutes...'));
-  shell.exec('npm install');
+  installDependencies('Starter');
 };
 /*
  Method for cloning the default theme
  and installing its npm dependencies
  */
-const cloneDefaultTheme = settings => {
+const cloneDefaultTheme = config => {
   // Install default theme
-  console.log(settings.THEMES_FOLDER);
-  shell.cd(settings.THEMES_FOLDER);
-  shell.exec(`git clone ${settings.DEFAULT_THEME.repository}`);
+  shell.cd(config.THEMES_FOLDER);
+  // Clone theme repository
+  if (shell.exec(`git clone ${config.DEFAULT_THEME.repository}`).code !== 0) {
+    console.error(errorStyle(`Error: Cloning repository ${config.DEFAULT_THEME.repository} failed`));
+    shell.exit(1);
+  }
+  console.log(successStyle(`${config.DEFAULT_THEME.repository} theme repository cloned.`));
   // Install theme dependencies
   console.log(noticeStyle('Install theme dependencies...'));
   console.log(noticeStyle('It might take several minutes...'));
-  shell.cd(settings.THEME_PREFIX + settings.DEFAULT_THEME.name);
-  shell.exec('npm install');
+  shell.cd(config.THEME_PREFIX + config.DEFAULT_THEME.name);
+  installDependencies('Theme');
 };
 // Init Command
 //-------------
@@ -60,12 +74,16 @@ exports.handler = argv => {
         cloneDefaultTheme(config);
       } else {
         // Folder is not empty
-        console.log(errorStyle(`Directory already exists and it's not empty. 
-        Change the ${config.STARTER_FOLDER} name or remove it.`));
+        console.error(errorStyle(`Folder already exists and it's not empty. 
+        Change the '${config.STARTER_FOLDER}' folder name or remove it.`));
       }
     });
   } else {
-    // The folder doesn't exists. Start to clone.
-    cloneStarter(config.STARTER_FOLDER);
+    // The folder doesn't exists. Make it
+    console.log(noticeStyle(`Create folder ${config.STARTER_FOLDER}...`));
+    shell.mkdir('-p', config.STARTER_FOLDER);
+    // Start to clone.
+    cloneStarter(config);
+    cloneDefaultTheme(config);
   }
 };
