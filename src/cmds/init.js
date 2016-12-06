@@ -1,4 +1,5 @@
 'use strict';
+require('shelljs/global');
 import shell from 'shelljs';
 import isThere from 'is-there';
 import emptyDir from 'empty-dir';
@@ -30,6 +31,7 @@ const cloneStarter = settings => {
  */
 const cloneDefaultTheme = settings => {
   // Install default theme
+  console.log(settings.THEMES_FOLDER);
   shell.cd(settings.THEMES_FOLDER);
   shell.exec(`git clone ${settings.DEFAULT_THEME.repository}`);
   // Install theme dependencies
@@ -43,6 +45,10 @@ const cloneDefaultTheme = settings => {
 exports.command = 'init';
 exports.desc = 'Initialize the speaker deck folder';
 exports.handler = argv => {
+  if (!shell.which('git')) {
+    shell.echo('Sorry, this script requires git');
+    shell.exit(1);
+  }
   // Check if the folder exists.
   if (isThere(config.STARTER_FOLDER)) {
     // Check if the folder is empty
