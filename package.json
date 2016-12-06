@@ -44,12 +44,15 @@
     ]
   },
   "keywords": [
-    "website",
     "presentation",
-    "framework",
     "confetti",
-    "cli",
+    "slidedeck",
+    "slides",
+    "talk",
+    "slideshow",
     "speaker",
-    "slides"
+    "website",
+    "generator",
+    "cli"
   ]
 }
