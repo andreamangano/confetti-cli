@@ -14,8 +14,8 @@ const noticeStyle = chalk.bold.gray;
 const cloneStarter = settings => {
   // Create starter folder
   console.log(noticeStyle(`Create folder ${settings.STARTER_FOLDER}...`));
-  shell.mkdir('-p', config.STARTER_FOLDER);
-  shell.cd(config.STARTER_FOLDER);
+  shell.mkdir('-p', settings.STARTER_FOLDER);
+  shell.cd(settings.STARTER_FOLDER);
   // Clone the confetti-starter repository
   console.log(noticeStyle(`Clone confetti-starter repository into ${settings.STARTER_FOLDER}...`));
   shell.exec(`git clone ${settings.STARTER_REPOSITORY}`);
