@@ -1,12 +1,16 @@
 'use strict';
 import shell from 'shelljs';
+import chalk from 'chalk';
 import config from './../config';
-import fs from 'fs';
+const errorStyle = chalk.bold.red;
 // Build Command
 //--------------
 exports.command = 'build';
 exports.desc = 'Build all assets for the speaker deck.';
 exports.handler = argv => {
-  const pkg = JSON.parse(fs.readFileSync(`${config.STARTER_REPOSITORY_NAME}/package.json`, 'utf8'));
-  shell.exec(pkg.scripts.build);
+  shell.cd(config.STARTER_REPOSITORY_NAME);
+  if (shell.exec('npm run build').code !== 0) {
+    console.error(errorStyle('Error: Build failed.'));
+    shell.exit(1);
+  }
 };
