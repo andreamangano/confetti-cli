@@ -11,11 +11,12 @@ const official_themes = {
     repository: `https://github.com/andreamangano/${THEME_PREFIX}tangerine.git`
   }
 };
+const baseDir = './deck/';
 export default {
   STARTER_REPOSITORY: 'https://github.com/andreamangano/confetti-starter.git',
-  STARTER_REPOSITORY_NAME: 'confetti-starter',
-  STARTER_FOLDER: './deck/',
-  THEMES_FOLDER: './deck/themes/',
+  STARTER_FOLDER: baseDir,
+  THEMES_FOLDER: `${baseDir}themes/`,
+  DIST_FOLDER: './dist/',
   THEME_PREFIX,
   DEFAULT_THEME: official_themes.tangerine,
   OFFICIAL_THEMES: official_themes
