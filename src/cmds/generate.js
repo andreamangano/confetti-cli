@@ -8,13 +8,9 @@ const errorStyle = chalk.bold.red;
 exports.command = 'generate';
 exports.desc = 'Generate all assets for the speaker deck.';
 exports.handler = argv => {
-  shell.cd(config.STARTER_REPOSITORY_NAME);
-  // if (shell.exec('npm run build').code !== 0) {
-  //  console.error(errorStyle('Error: Build failed.'));
-  //  shell.exit(1);
-  // }
+  // TODO: clear dist folder before
   if (shell.exec('confetti-loader --config confetti.loader.json | confetti-generator').code !== 0) {
-    console.error(errorStyle('Error: Build failed.'));
+    console.error(errorStyle('Error: Generation failed.'));
     shell.exit(1);
   }
 };
