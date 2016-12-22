@@ -21,15 +21,11 @@ const installDependencies = subject => {
  and installing its npm dependencies
  */
 const cloneStarter = config => {
-  shell.cd(config.STARTER_FOLDER);
-  // Clone the confetti-starter repository
-  console.log(noticeStyle(`Clone confetti-starter repository into ${config.STARTER_FOLDER}...`));
-  if (shell.exec(`git clone ${config.STARTER_REPOSITORY}`).code !== 0) {
+  if (shell.exec(`git clone ${config.STARTER_REPOSITORY} ${config.STARTER_FOLDER}`).code !== 0) {
     console.error(errorStyle(`Error: Cloning repository ${config.STARTER_REPOSITORY} failed`));
     shell.exit(1);
   }
   console.log(successStyle(`${config.STARTER_REPOSITORY} repository cloned.`));
-  shell.cd(config.STARTER_REPOSITORY_NAME);
   // Install repository dependencies
   console.log(noticeStyle('Install repository dependencies...'));
   console.log(noticeStyle('It might take several minutes...'));
@@ -40,10 +36,8 @@ const cloneStarter = config => {
  and installing its npm dependencies
  */
 const cloneDefaultTheme = config => {
-  // Install default theme
-  shell.cd(config.THEMES_FOLDER);
   // Clone theme repository
-  if (shell.exec(`git clone ${config.DEFAULT_THEME.repository}`).code !== 0) {
+  if (shell.exec(`git clone ${config.DEFAULT_THEME.repository} ${config.THEMES_FOLDER}${config.DEFAULT_THEME.name}`).code !== 0) {
     console.error(errorStyle(`Error: Cloning repository ${config.DEFAULT_THEME.repository} failed`));
     shell.exit(1);
   }
@@ -51,13 +45,13 @@ const cloneDefaultTheme = config => {
   // Install theme dependencies
   console.log(noticeStyle('Install theme dependencies...'));
   console.log(noticeStyle('It might take several minutes...'));
-  shell.cd(config.THEME_PREFIX + config.DEFAULT_THEME.name);
+  shell.cd(`${config.THEMES_FOLDER}${config.DEFAULT_THEME.name}`);
   installDependencies('Theme');
 };
 // Init Command
 //-------------
 exports.command = 'init';
-exports.desc = 'Initialize the speaker deck folder';
+exports.desc = 'Create a new slide deck folder at the thecurrent directory.';
 exports.handler = argv => {
   if (!shell.which('git')) {
     shell.echo('Sorry, this script requires git');

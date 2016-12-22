@@ -14,8 +14,8 @@ const official_themes = {
 export default {
   STARTER_REPOSITORY: 'https://github.com/andreamangano/confetti-starter.git',
   STARTER_REPOSITORY_NAME: 'confetti-starter',
-  STARTER_FOLDER: './deck',
-  THEMES_FOLDER: './src/themes',
+  STARTER_FOLDER: './deck/',
+  THEMES_FOLDER: './deck/themes/',
   THEME_PREFIX,
   DEFAULT_THEME: official_themes.tangerine,
   OFFICIAL_THEMES: official_themes
