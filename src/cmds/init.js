@@ -1,10 +1,10 @@
 'use strict';
-require('shelljs/global');
 import shell from 'shelljs';
 import isThere from 'is-there';
 import emptyDir from 'empty-dir';
 import config from './../config';
 import * as logger from './../logger';
+import path from 'path';
 /*
   Method for installing package dependencies.
 */
@@ -28,6 +28,7 @@ const cloneStarter = config => {
   // Install repository dependencies
   logger.message('Install repository dependencies...');
   logger.message('It might take several minutes...');
+  shell.cd(config.STARTER_FOLDER);
   installDependencies('Starter');
 };
 /*
@@ -35,8 +36,9 @@ const cloneStarter = config => {
  and installing its npm dependencies
  */
 const cloneDefaultTheme = config => {
+  const themePath = path.join(config.THEMES_FOLDER, config.DEFAULT_THEME.name);
   // Clone theme repository
-  if (shell.exec(`git clone ${config.DEFAULT_THEME.repository} ${config.THEMES_FOLDER}${config.DEFAULT_THEME.name}`).code !== 0) {
+  if (shell.exec(`git clone ${config.DEFAULT_THEME.repository} ${themePath}`).code !== 0) {
     logger.error(`Error: Cloning repository ${config.DEFAULT_THEME.repository} failed`);
     shell.exit(1);
   }
@@ -44,7 +46,7 @@ const cloneDefaultTheme = config => {
   // Install theme dependencies
   logger.message('Install theme dependencies...');
   logger.message('It might take several minutes...');
-  shell.cd(`${config.THEMES_FOLDER}${config.DEFAULT_THEME.name}`);
+  shell.cd(themePath);
   installDependencies('Theme');
 };
 // Init Command
@@ -53,7 +55,7 @@ exports.command = 'init';
 exports.desc = 'Create a new slide deck folder at the the current directory.';
 exports.handler = argv => {
   if (!shell.which('git')) {
-    shell.echo('Sorry, this script requires git');
+    logger.error('Sorry, this script requires git!');
     shell.exit(1);
   }
   // Check if the folder exists.
@@ -74,7 +76,10 @@ exports.handler = argv => {
   } else {
     // The folder doesn't exists. Make it
     logger.message(`Create folder ${config.STARTER_FOLDER}...`);
-    shell.mkdir('-p', config.STARTER_FOLDER);
+    if (shell.mkdir('-p', config.STARTER_FOLDER).code !== 0) {
+      logger.error(`Error: Impossible to create deck folder ${config.STARTER_FOLDER}`);
+      shell.exit(1);
+    }
     // Start to clone.
     cloneStarter(config);
     cloneDefaultTheme(config);
