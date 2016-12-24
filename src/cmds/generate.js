@@ -28,9 +28,11 @@ exports.handler = argv => {
         })
         .catch(error => {
           logger.error(error);
+          shell.exit(1);
         });
     })
     .catch(error => {
       logger.error(error);
+      shell.exit(1);
     });
 };
