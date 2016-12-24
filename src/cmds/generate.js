@@ -1,37 +1,36 @@
 'use strict';
-import shell from 'shelljs';
-import chalk from 'chalk';
+import * as logger from './../logger';
 import configLoader from './../config-loader';
-import config from './../config';
 import Generator from 'confetti-generator';
 import Loader from 'confetti-loader';
-const errorStyle = chalk.bold.red;
-const successStyle = chalk.bold.green;
+import shell from 'shelljs';
+import config from '../config.js';
+//-----------------
 // Generate Command
-//--------------
+//-----------------
 exports.command = 'generate';
 exports.desc = 'Generate all assets for the speaker deck.';
 exports.handler = argv => {
+  if (shell.exec(`rm -rf ${config.DIST_FOLDER}`).code !== 0) {
+    console.error(`Error cleaning dist folder.`);
+    shell.exit(1);
+  }
   const loader = new Loader();
+  logger.message('Loading speaker deck data...');
   loader.loadDeck(configLoader)
     .then(deckData => {
       const generator = new Generator(deckData.paths, true);
+      logger.success('Speaker deck data loaded.');
+      logger.message('Generating speaker deck...');
       generator.generate(deckData)
         .then(() => {
-          console.log(successStyle('Speaker Deck built.'));
+          logger.success('Speaker deck built.');
         })
         .catch(error => {
-          console.log(errorStyle(error));
+          logger.error(error);
         });
     })
     .catch(error => {
-      console.log(errorStyle(error));
+      logger.error(error);
     });
-
-  // TODO: clear dist folder before
-  // if (shell.exec('confetti-loader --config confetti.loader.json |
-  // confetti-generator').code !== 0) {
-  //  console.error(errorStyle('Error: Generation failed.'));
-  //  shell.exit(1);
-  // }
 };

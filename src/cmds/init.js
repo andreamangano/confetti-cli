@@ -3,18 +3,17 @@ require('shelljs/global');
 import shell from 'shelljs';
 import isThere from 'is-there';
 import emptyDir from 'empty-dir';
-import chalk from 'chalk';
 import config from './../config';
-const errorStyle = chalk.bold.red;
-const noticeStyle = chalk.bold.gray;
-const successStyle = chalk.bold.green;
+import * as logger from './../logger';
+/*
+  Method for installing package dependencies.
+*/
 const installDependencies = subject => {
   if (shell.exec('npm install').code !== 0) {
-    console.error(errorStyle('Error occurs during the dependencies'
-      + ' installation.'));
+    logger.error(`Error occurs during the dependencies installation.`);
     shell.exit(1);
   }
-  console.log(successStyle(`${subject} dependencies installed.`));
+  logger.success(`${subject} dependencies installed.`);
 };
 /*
  Method for cloning the starter repository
@@ -22,13 +21,13 @@ const installDependencies = subject => {
  */
 const cloneStarter = config => {
   if (shell.exec(`git clone ${config.STARTER_REPOSITORY} ${config.STARTER_FOLDER}`).code !== 0) {
-    console.error(errorStyle(`Error: Cloning repository ${config.STARTER_REPOSITORY} failed`));
+    logger.error(`Error: Cloning repository ${config.STARTER_REPOSITORY} failed`);
     shell.exit(1);
   }
-  console.log(successStyle(`${config.STARTER_REPOSITORY} repository cloned.`));
+  logger.success(`${config.STARTER_REPOSITORY} repository cloned.`);
   // Install repository dependencies
-  console.log(noticeStyle('Install repository dependencies...'));
-  console.log(noticeStyle('It might take several minutes...'));
+  logger.message('Install repository dependencies...');
+  logger.message('It might take several minutes...');
   installDependencies('Starter');
 };
 /*
@@ -38,20 +37,20 @@ const cloneStarter = config => {
 const cloneDefaultTheme = config => {
   // Clone theme repository
   if (shell.exec(`git clone ${config.DEFAULT_THEME.repository} ${config.THEMES_FOLDER}${config.DEFAULT_THEME.name}`).code !== 0) {
-    console.error(errorStyle(`Error: Cloning repository ${config.DEFAULT_THEME.repository} failed`));
+    logger.error(`Error: Cloning repository ${config.DEFAULT_THEME.repository} failed`);
     shell.exit(1);
   }
-  console.log(successStyle(`${config.DEFAULT_THEME.repository} theme repository cloned.`));
+  logger.success(`${config.DEFAULT_THEME.repository} theme repository cloned.`);
   // Install theme dependencies
-  console.log(noticeStyle('Install theme dependencies...'));
-  console.log(noticeStyle('It might take several minutes...'));
+  logger.message('Install theme dependencies...');
+  logger.message('It might take several minutes...');
   shell.cd(`${config.THEMES_FOLDER}${config.DEFAULT_THEME.name}`);
   installDependencies('Theme');
 };
 // Init Command
 //-------------
 exports.command = 'init';
-exports.desc = 'Create a new slide deck folder at the thecurrent directory.';
+exports.desc = 'Create a new slide deck folder at the the current directory.';
 exports.handler = argv => {
   if (!shell.which('git')) {
     shell.echo('Sorry, this script requires git');
@@ -62,19 +61,19 @@ exports.handler = argv => {
     // Check if the folder is empty
     emptyDir(config.STARTER_FOLDER, (err, result) => {
       if (err) {
-        console.error(errorStyle(err));
+        logger.error(err);
       } else if (result) {
         cloneStarter(config);
         cloneDefaultTheme(config);
       } else {
         // Folder is not empty
-        console.error(errorStyle(`Folder already exists and it's not empty. 
-        Change the '${config.STARTER_FOLDER}' folder name or remove it.`));
+        logger.error(`Folder already exists and it's not empty. 
+        Change the destination folder or remove it.`);
       }
     });
   } else {
     // The folder doesn't exists. Make it
-    console.log(noticeStyle(`Create folder ${config.STARTER_FOLDER}...`));
+    logger.message(`Create folder ${config.STARTER_FOLDER}...`);
     shell.mkdir('-p', config.STARTER_FOLDER);
     // Start to clone.
     cloneStarter(config);
