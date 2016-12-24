@@ -11,7 +11,7 @@ export function info(msg, iconCode) {
 
 export function error(msg, iconCode) {
   const icon = String.fromCodePoint(iconCode ? iconCode : 0x2757);
-  console.log(`${icon}  ${chalk.bold.underline.red('Error:')} --> ${chalk.bold.red(msg)}`);
+  console.log(`${icon} ${chalk.bold.red(msg)}`);
 }
 
 export function warning(msg, iconCode) {
