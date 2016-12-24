@@ -1,4 +1,5 @@
-module.exports = {
+'use strict';
+export default {
   paths: {
     settings: './settings.yml',
     slides: './data/slides.yml',
