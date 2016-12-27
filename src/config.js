@@ -1,5 +1,4 @@
 'use strict';
-import path from 'path';
 const THEME_PREFIX = 'confetti-theme-';
 // List of official themes
 const official_themes = {

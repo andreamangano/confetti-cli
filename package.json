@@ -19,7 +19,7 @@
   "dependencies": {
     "chalk": "^1.1.3",
     "confetti-generator": "^0.1.11",
-    "confetti-loader": "0.0.4",
+    "confetti-loader": "^0.0.8",
     "empty-dir": "^0.2.1",
     "is-there": "^4.3.3",
     "shelljs": "^0.7.4",
