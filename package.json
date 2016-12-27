@@ -23,13 +23,13 @@
     "empty-dir": "^0.2.1",
     "is-there": "^4.3.3",
     "shelljs": "^0.7.4",
-    "yargs": "^5.0.0"
+    "yargs": "^5.0.0",
+    "browser-sync": "^2.18.5"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",
     "babel-core": "^6.17.0",
     "babel-preset-es2015": "^6.16.0",
-    "browser-sync": "^2.18.5",
     "eslint": "^3.10.2",
     "eslint-config-xo-space": "^0.15.0",
     "eslint-plugin-babel": "^3.3.0",
