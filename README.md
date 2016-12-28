@@ -22,6 +22,12 @@ $ cd deck
 $ confetti server
 ```
 
+Start in theme development mode adding the option --dev
+
+``` bash
+$ confetti server --dev
+```
+
 ## License
 
 MIT
