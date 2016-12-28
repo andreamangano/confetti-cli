@@ -52,7 +52,7 @@ const cloneDefaultTheme = config => {
 // Init Command
 //-------------
 exports.command = 'init';
-exports.desc = 'Create a new slide deck folder at the the current directory.';
+exports.desc = `Create a new speaker deck folder structyre at the current directory.`;
 exports.handler = argv => {
   if (!shell.which('git')) {
     logger.error('Sorry, this script requires git!');
