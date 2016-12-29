@@ -1,5 +1,11 @@
-# Confetti CLI (Work in progress!)
-Command line interface for Confetti, a tool for enriching your online speaker decks.
+# Confetti enriches your slide deck.
+---
+ ### --[ The project is still under construction.]--
+
+Confetti helps you to **enrich**, **publish** and **share** beautiful HTML5 presentations.
+Confetti provides a way to turn your slides in an amazing online presentation
+using any of supported themes but it also allows to let advanced CSS and
+JavaScript for customized slide decks. Why not get started now?
 
 ## Installation
 
@@ -22,7 +28,7 @@ $ cd deck
 $ confetti server
 ```
 
-Start in theme development mode adding the option --dev
+Start the server in "theme development mode" adding the option --dev
 
 ``` bash
 $ confetti server --dev
