@@ -47,7 +47,6 @@ const callback = (generator, deckData, bs, dev) => {
   /*
    Watch changes on:
    - slide deck settings
-   - slide images folder
    - data slides
    - selected theme config
    */
@@ -60,7 +59,13 @@ const callback = (generator, deckData, bs, dev) => {
     // If anything is changed rebuild the deck
     build(bs, dev, callback);
   });
+  bs.watch(configLoader.paths.images).on('change', () => {
+    // TODO: add method to copy images from data folder into the dist one
+  });
   bs.watch(config.DIST_FOLDER).on('change', bs.reload);
+  /*
+    Watch the theme assets only if the dev mode is switched on.
+  */
   if (dev) {
     logger.info('Theme development environment enabled.');
     watchAll(bs, generator, deckData);

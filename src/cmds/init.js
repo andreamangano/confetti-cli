@@ -49,6 +49,7 @@ const cloneDefaultTheme = config => {
   shell.cd(themePath);
   installDependencies('Theme');
 };
+//-------------
 // Init Command
 //-------------
 exports.command = 'init';
