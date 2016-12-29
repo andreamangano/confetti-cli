@@ -1,6 +1,6 @@
 # Confetti enriches your slide deck.
 ---
- ### --[ The project is still under construction.]--
+### --[ The project is still under construction.]--
 
 Confetti helps you to **enrich**, **publish** and **share** beautiful HTML5 presentations.
 Confetti provides a way to turn your slides in an amazing online presentation
