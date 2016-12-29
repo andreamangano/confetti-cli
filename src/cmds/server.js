@@ -8,8 +8,12 @@ import Loader from 'confetti-loader';
 import watchAll from './../assets-watchers';
 import * as logger from './../logger';
 import path from 'path';
+import del from 'del';
 const loader = new Loader();
-const build = (cb, firstTime) => {
+/*
+ Function to load data and to build the slide deck.
+ */
+const build = (bs, dev, cb) => {
   logger.message('Loading speaker deck data...');
   loader.loadDeck(configLoader)
     .then(deckData => {
@@ -19,7 +23,7 @@ const build = (cb, firstTime) => {
       logger.message('Generating speaker deck...');
       generator.generate(deckData)
         .then(() => {
-          cb(generator, deckData, firstTime);
+          cb(generator, deckData, bs, dev);
         })
         .catch(error => {
           logger.error(error);
@@ -30,6 +34,37 @@ const build = (cb, firstTime) => {
       logger.error(error);
       shell.exit(1);
     });
+};
+/*
+ Function called after the slide deck is built.
+ */
+const callback = (generator, deckData, bs, dev) => {
+  // Don't call init method if the bs is active yet.
+  if (!bs.active) {
+    bs.create();
+    bs.init({server: config.DIST_FOLDER});
+  }
+  /*
+   Watch changes on:
+   - slide deck settings
+   - slide images folder
+   - data slides
+   - selected theme config
+   */
+  bs.watch([
+    configLoader.paths.settings,
+    configLoader.paths.images,
+    configLoader.paths.slides,
+    path.join(configLoader.paths.themes, deckData.theme, 'data.yml')
+  ]).on('change', () => {
+    // If anything is changed rebuild the deck
+    build(bs, dev, callback);
+  });
+  bs.watch(config.DIST_FOLDER).on('change', bs.reload);
+  if (dev) {
+    logger.info('Theme development environment enabled.');
+    watchAll(bs, generator, deckData);
+  }
 };
 //--------------
 // Serve Command
@@ -43,30 +78,12 @@ exports.builder = {
 };
 exports.desc = `Serve the ${config.DIST_FOLDER} folder`;
 exports.handler = argv => {
-  if (shell.exec(`rm -rf ${config.DIST_FOLDER}`).code !== 0) {
-    logger.error(`Error cleaning dist folder.`);
-    shell.exit(1);
-  }
-  bs.create();
-  const callback = (generator, deckData, firstTime) => {
-    if (firstTime) {
-      bs.init({
-        server: config.DIST_FOLDER
-      });
-    }
-    bs.watch([
-      configLoader.paths.settings,
-      configLoader.paths.images,
-      configLoader.paths.slides,
-      path.join(configLoader.paths.themes, deckData.theme, 'data.yml')
-    ]).on('change', () => {
-      build(callback, false);
+  del(config.DIST_FOLDER)
+    .then(() => {
+      build(bs, argv.dev, callback);
+    })
+    .catch(error => {
+      logger.error(error);
+      shell.exit(1);
     });
-    if (argv.dev) {
-      logger.info('Theme development environment enabled.');
-      watchAll(bs, generator, deckData);
-    }
-    bs.watch(config.DIST_FOLDER).on('change', bs.reload);
-  };
-  build(callback, true);
 };
