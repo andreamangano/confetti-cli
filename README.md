@@ -36,4 +36,4 @@ $ confetti server --dev
 
 ## License
 
-MIT
+Licensed under [MIT License](LICENSE). © Andrea Mangano.
