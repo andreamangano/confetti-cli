@@ -8,7 +8,17 @@ const watchAll = (bs, generator, data) => {
   bs.watch(sources.views).on(
     'change', () => generator.compileViews(data)
   );
-  // TODO: add watcher for scripts, fonts, images
+  // Javascript watcher
+  bs.watch(sources.javascript).on(
+    'change', () => generator.compileJavascript()
+  );
+  // Images watcher
+  bs.watch(sources.images).on(
+    'change', () => generator.copyImages()
+  );
+  // Fonts watcher
+  bs.watch(sources.fonts).on(
+    'change', () => generator.copyFonts()
+  );
 };
-
 export default watchAll;
