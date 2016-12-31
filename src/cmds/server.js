@@ -59,9 +59,7 @@ const callback = (generator, deckData, bs, dev) => {
     // If anything is changed rebuild the deck
     build(bs, dev, callback);
   });
-  bs.watch(configLoader.paths.images).on('change', () => {
-    // TODO: add method to copy images from data folder into the dist one
-  });
+  bs.watch(configLoader.paths.covers).on('change', () => generator.copyCovers());
   bs.watch(config.DIST_FOLDER).on('change', bs.reload);
   /*
     Watch the theme assets only if the dev mode is switched on.
