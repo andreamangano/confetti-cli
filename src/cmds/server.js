@@ -52,7 +52,6 @@ const callback = (generator, deckData, bs, dev) => {
    */
   bs.watch([
     configLoader.paths.settings,
-    configLoader.paths.images,
     configLoader.paths.slides,
     path.join(configLoader.paths.themes, deckData.theme, 'data.yml')
   ]).on('change', () => {
