@@ -2,7 +2,7 @@
 export default {
   paths: {
     settings: './settings.yml',
-    slides: './data/slides.yml',
+    slides: './data/slides.md',
     images: './data/images/',
     themes: './themes',
     dist: './dist'
