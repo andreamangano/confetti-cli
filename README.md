@@ -7,7 +7,7 @@ Confetti provides a way to turn your slides in an amazing online presentation
 using any of supported themes but it also allows to let advanced CSS and
 JavaScript for customized slide decks. Why not get started now?
 
-## Installation
+# Installation
 
 Install the library as any other global [npm](https://www.npmjs.com) package. Be sure to have npm and node installed then launch the command:
 
@@ -17,7 +17,7 @@ $ npm install confetti-cli -g
 
 ## Quick Start
 
-**Setup your slide deck**
+### Setup your slide
 
 The init command create a folder (named ‘deck’) with the assets that make up a slide deck.
 
@@ -26,7 +26,7 @@ $ confetti init
 $ cd deck
 ```
 
-**Start the server**
+### Start the server
 
 ``` bash
 $ confetti server
