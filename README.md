@@ -17,7 +17,7 @@ $ npm install confetti-cli -g
 
 ## Quick Start
 
-### Setup your slide
+### Setup your slide deck
 
 The init command create a folder (named ‘deck’) with the assets that make up a slide deck.
 
