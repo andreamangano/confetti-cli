@@ -8,8 +8,7 @@ using any of supported themes but it also allows to let advanced CSS and
 JavaScript for customized slide decks. Why not get started now?
 
 # Installation
-
-Install the library as any other global [npm](https://www.npmjs.com) package. Be sure to have npm and node installed then launch the command:
+Install the library as any other global [npm](https://www.npmjs.com) package. Be sure to have npm, git and node installed. If your computer already has these, just install Confetti with npm:
 
 ``` bash
 $ npm install confetti-cli -g
