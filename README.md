@@ -34,14 +34,14 @@ $ confetti server
 When run in a slide deck folder, this will build the presentation starting from the settings and data files in the current folder in order to view and present.
 
 #### Theme development mode
-If you are going to edit the current theme and see the changes "live", you need to start the server in “development mode” adding the option “--dev”.
+If you are going to edit the current theme and see the changes **live**, you need to start the server in **development mode** adding the option `` --dev ``.
 
 ``` bash
 $ confetti server --dev
 ```
 
 #### Serve the dist folder
-Use the option --dist to serve the folder for distribution. This way you run the optimised version of your slide deck.
+Use the option `` --dist `` to serve the folder for distribution. This way you run the **optimised version** of your slide deck.
 
 ``` bash
 $ confetti server --dist
