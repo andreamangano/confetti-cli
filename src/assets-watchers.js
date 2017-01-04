@@ -4,7 +4,9 @@ const watchAll = (bs, generator, data) => {
   // Styles watcher
   // TODO: add error handler on each generator function
   bs.watch(sources.styles).on(
-    'change', () => generator.compileStyles(data.compilers.sass, data.themeConfig).catch(error => logger.error(error))
+    'change', () => generator.compileStyles(
+      data.compilers.sass,
+      data.themeConfig).catch(error => logger.error(error))
   );
   // Views watcher
   bs.watch(sources.views).on(
