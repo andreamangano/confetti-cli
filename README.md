@@ -57,7 +57,7 @@ $ confetti build
 
 Once you've built your HTML5 slide deck, it's time to share it with the world! 
 Since you are dealing with static assets, there are several hosting options available such as FTP, GitHub pages or cloude hosting. You're free to choose your favourite one!
-##### Remember you need to upload just the "dist" folder.
+##### PLEASE NOTE: Remember you need to upload just the "dist" folder.
 
 ## License
 
