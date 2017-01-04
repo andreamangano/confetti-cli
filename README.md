@@ -32,11 +32,32 @@ Confetti includes a local server utility to allow quick live-previewing of the s
 $ confetti server
 ```
 When run in a slide deck folder, this will build the presentation starting from the settings and data files in the current folder in order to view and present.
+
+#### Theme development mode
 If you are going to edit the current theme and see the changes "live", you need to start the server in “development mode” adding the option “--dev”.
 
 ``` bash
 $ confetti server --dev
 ```
+
+#### Serve the dist folder
+Use the option --dist to serve the folder for distribution. This way you run the optimised version of your slide deck.
+
+``` bash
+$ confetti server --dist
+```
+
+### Build
+Before you deploy your presentation, you need to build static HTML, CSS and JavaScript files.
+Confetti does that using the command build.
+
+``` bash
+$ confetti build
+```
+
+Once you've built your HTML5 slide deck, it's time to share it with the world! 
+Since you are dealing with static assets, there are several hosting options available such as FTP, GitHub pages or cloude hosting. You're free to choose your favourite one!
+** Remember you need to upload just the "dist" folder.**
 
 ## License
 
