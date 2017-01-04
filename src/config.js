@@ -17,6 +17,7 @@ export default {
   STARTER_FOLDER: baseDir,
   THEMES_FOLDER: `./themes`,
   DIST_FOLDER: './dist',
+  DEV_FOLDER: './dev',
   THEME_PREFIX,
   DEFAULT_THEME: official_themes.tangerine,
   OFFICIAL_THEMES: official_themes
