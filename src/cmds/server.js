@@ -13,7 +13,7 @@ const loader = new Loader();
 /*
  Function to load data and to build the slide deck.
  */
-const build = (bs, dev, folder, serveDist, cb) => {
+const build = (bs, dev, folder, serveDist) => {
   logger.message('Loading speaker deck data...');
   loader.loadDeck(configLoader, serveDist)
     .then(deckData => {
@@ -22,7 +22,34 @@ const build = (bs, dev, folder, serveDist, cb) => {
       logger.message('Generating speaker deck...');
       generator.generate(deckData)
         .then(() => {
-          cb(generator, deckData, bs, folder, serveDist, dev);
+          if (!bs.active) {
+            bs.create();
+            bs.init({server: folder, open: false});
+            /*
+             Watch changes on:
+             - slide deck settings
+             - data slides
+             - selected theme config
+             */
+            bs.watch([
+              configLoader.paths.settings,
+              configLoader.paths.slides,
+              path.join(configLoader.paths.themes, deckData.theme, 'data.yml')
+            ]).on('change', () => {
+              // If anything is changed rebuild the deck
+              build(bs, dev, folder, serveDist);
+            });
+            bs.watch(configLoader.paths.covers).on('change',
+              () => generator.copyCovers().catch(error => logger.error(error)));
+            bs.watch(folder).on('change', bs.reload);
+            /*
+             Watch the theme assets only if the dev mode is switched on.
+             */
+            if (dev) {
+              logger.info('Theme development environment enabled.');
+              watchAll(bs, generator, deckData);
+            }
+          }
         })
         .catch(error => {
           logger.error(error);
@@ -33,40 +60,6 @@ const build = (bs, dev, folder, serveDist, cb) => {
       logger.error(error);
       shell.exit(1);
     });
-};
-/*
- Function called after the slide deck is built.
- */
-const callback = (generator, deckData, bs, folder, serveDist, dev) => {
-  // Don't call init method if the bs is active yet.
-  if (!bs.active) {
-    bs.create();
-    bs.init({server: folder, open: false});
-    /*
-     Watch changes on:
-     - slide deck settings
-     - data slides
-     - selected theme config
-     */
-    bs.watch([
-      configLoader.paths.settings,
-      configLoader.paths.slides,
-      path.join(configLoader.paths.themes, deckData.theme, 'data.yml')
-    ]).on('change', () => {
-      // If anything is changed rebuild the deck
-      build(bs, dev, folder, serveDist, callback);
-    });
-    bs.watch(configLoader.paths.covers).on('change',
-      () => generator.copyCovers().catch(error => logger.error(error)));
-    bs.watch(folder).on('change', bs.reload);
-    /*
-     Watch the theme assets only if the dev mode is switched on.
-     */
-    if (dev) {
-      logger.info('Theme development environment enabled.');
-      watchAll(bs, generator, deckData);
-    }
-  }
 };
 //--------------
 // Serve Command
@@ -88,7 +81,7 @@ exports.handler = argv => {
   del(SERVE_FOLDER)
     .then(() => {
       const serveDist = Boolean(argv.dist);
-      build(bs, argv.dev, SERVE_FOLDER, serveDist, callback);
+      build(bs, argv.dev, SERVE_FOLDER, serveDist);
     })
     .catch(error => {
       logger.error(error);
