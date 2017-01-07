@@ -47,7 +47,7 @@ class BuildObserver {
           data.cb();
         }
       })
-      .catch(error => logger.message(error));
+      .catch(error => logger.error(error));
   }
 
   onStylesChange(data) {
@@ -59,7 +59,7 @@ class BuildObserver {
           data.cb();
         }
       })
-      .catch(error => logger.message(error));
+      .catch(error => logger.error(error));
   }
 
   onViewsChange(data) {
@@ -71,7 +71,7 @@ class BuildObserver {
           data.cb();
         }
       })
-      .catch(error => logger.message(error));
+      .catch(error => logger.error(error));
   }
 
   onJavascriptChange(data) {
@@ -83,7 +83,7 @@ class BuildObserver {
           data.cb();
         }
       })
-      .catch(error => logger.message(error));
+      .catch(error => logger.error(error));
   }
 
   // TODO: improve copying only the file has been changed.
@@ -96,7 +96,7 @@ class BuildObserver {
           data.cb();
         }
       })
-      .catch(error => logger.message(error));
+      .catch(error => logger.error(error));
   }
 
   // TODO: improve copying only the file has been changed.
@@ -109,7 +109,7 @@ class BuildObserver {
           data.cb();
         }
       })
-      .catch(error => logger.message(error));
+      .catch(error => logger.error(error));
   }
 
   onSettingsChange(data) {
