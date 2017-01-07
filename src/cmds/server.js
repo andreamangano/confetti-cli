@@ -1,66 +1,16 @@
 'use strict';
 import shell from 'shelljs';
-import bs from 'browser-sync';
 import config from '../config.js';
 import configLoader from './../config-loader';
-import Generator from 'confetti-generator';
 import Loader from 'confetti-loader';
-import watchAll from './../assets-watchers';
+import EventEmitter from './../eventEmitter';
+import BuildObserver from './../buildObserver';
 import * as logger from './../logger';
 import path from 'path';
 import del from 'del';
+import bs from 'browser-sync';
+bs.create('server');
 const loader = new Loader();
-/*
- Function to load data and to build the slide deck.
- */
-const build = (bs, dev, folder, serveDist) => {
-  logger.message('Loading speaker deck data...');
-  loader.loadDeck(configLoader, serveDist)
-    .then(deckData => {
-      const generator = new Generator(deckData.paths, serveDist);
-      logger.success('Speaker deck data loaded.');
-      logger.message('Generating speaker deck...');
-      generator.generate(deckData)
-        .then(() => {
-          if (!bs.active) {
-            bs.create();
-            bs.init({server: folder, open: false});
-            /*
-             Watch changes on:
-             - slide deck settings
-             - data slides
-             - selected theme config
-             */
-            bs.watch([
-              configLoader.paths.settings,
-              configLoader.paths.slides,
-              path.join(configLoader.paths.themes, deckData.theme, 'data.yml')
-            ]).on('change', () => {
-              // If anything is changed rebuild the deck
-              build(bs, dev, folder, serveDist);
-            });
-            bs.watch(configLoader.paths.covers).on('change',
-              () => generator.copyCovers().catch(error => logger.error(error)));
-            bs.watch(folder).on('change', bs.reload);
-            /*
-             Watch the theme assets only if the dev mode is switched on.
-             */
-            if (dev) {
-              logger.info('Theme development environment enabled.');
-              watchAll(bs, generator, deckData);
-            }
-          }
-        })
-        .catch(error => {
-          logger.error(error);
-          shell.exit(1);
-        });
-    })
-    .catch(error => {
-      logger.error(error);
-      shell.exit(1);
-    });
-};
 //--------------
 // Serve Command
 //--------------
@@ -80,8 +30,77 @@ exports.handler = argv => {
   const SERVE_FOLDER = argv.dist ? config.DIST_FOLDER : config.DEV_FOLDER;
   del(SERVE_FOLDER)
     .then(() => {
+      const observable = new EventEmitter();
       const serveDist = Boolean(argv.dist);
-      build(bs, argv.dev, SERVE_FOLDER, serveDist);
+      const builObserver = new BuildObserver(1, observable);
+      const watchersCommonOptions = {
+        ignored: ignoredPath => {
+          // Ignores .dotfiles
+          // Chokidar does match against the whole path and not just
+          // filename itself.
+          return /(^[.#]|(?:__|~)$)/.test(path.basename(ignoredPath));
+        },
+        ignoreInitial: true
+      };
+      loader.loadDeck(configLoader, serveDist)
+        .then(deckData => {
+          const bsInstance = bs.get('server');
+          bsInstance.init({
+            server: SERVE_FOLDER,
+            open: false,
+            logPrefix: 'Confetti'
+          });
+          bsInstance.emitter.on('init', () => {
+            observable.emit('serverInit', {deck: deckData, serveDist});
+          });
+          /*
+           Watch the settings files:
+           - deck settings
+           - slides data
+           - theme config
+           */
+          bsInstance.watch([
+            configLoader.paths.settings,
+            configLoader.paths.slides,
+            path.join(configLoader.paths.themes, deckData.theme, 'data.yml')
+          ], watchersCommonOptions).on('change', path => {
+            observable.emit('settingsChange', {path, serveDist, cb: () => bsInstance.reload()});
+          });
+          /*
+           Watch the folder where the covers are.
+           */
+          bsInstance.watch(configLoader.paths.covers, watchersCommonOptions).on('all', (event, path) => {
+            if (event === 'add' || event === 'change') {
+              observable.emit('coverChange', {path, cb: () => bsInstance.reload()});
+            }
+          });
+          if (argv.dev) {
+            logger.info('Theme development mode enabled.');
+            bsInstance.watch(deckData.paths.sources.styles, watchersCommonOptions).on('all', (event, path) => {
+              observable.emit('stylesChange', {path, cb: () => bsInstance.reload()});
+            });
+            bsInstance.watch(deckData.paths.sources.views, watchersCommonOptions).on('all', (event, path) => {
+              observable.emit('viewsChange', {path, cb: () => bsInstance.reload()});
+            });
+            bsInstance.watch(deckData.paths.sources.javascript, watchersCommonOptions).on('all', (event, path) => {
+              observable.emit('javascriptChange', {path, cb: () => bsInstance.reload()});
+            });
+            bsInstance.watch(deckData.paths.sources.images, watchersCommonOptions).on('all', (event, path) => {
+              if (event === 'add' || event === 'change') {
+                observable.emit('imagestChange', {path, cb: () => bsInstance.reload()});
+              }
+            });
+            bsInstance.watch(deckData.paths.sources.fonts, watchersCommonOptions).on('all', (event, path) => {
+              if (event === 'add' || event === 'change') {
+                observable.emit('fontstChange', {path, cb: () => bsInstance.reload()});
+              }
+            });
+          }
+        })
+        .catch(error => {
+          logger.error(error);
+          shell.exit(1);
+        });
     })
     .catch(error => {
       logger.error(error);
