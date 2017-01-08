@@ -131,9 +131,9 @@ theme: voice
 ## Confetti Ecosystem
 Confetti is a open source library composed by different functional packages. Confetti-cli is the master repository for all deck repositories listed below:
 
-* (Confetti Starter)[https://github.com/andreamangano/confetti-starter]
-* (Confetti Generator) [https://github.com/andreamangano/confetti-generator]
-* (Confetti Loader) [https://github.com/andreamangano/confetti-loader]
+* [Confetti Starter](https://github.com/andreamangano/confetti-starter)
+* [Confetti Generator] (https://github.com/andreamangano/confetti-generator)
+* [Confetti Loader] (https://github.com/andreamangano/confetti-loader)
 
 
 ## License
