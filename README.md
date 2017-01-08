@@ -92,6 +92,10 @@ author:
   name: Author Name
   role: Author role
   picture: author-picture.jpg
+  description: >
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </p>
 
 demo: url/to/demo
 
