@@ -6,7 +6,7 @@ Confetti is a static site generator that helps you to **enrich**,
 **publish** and **share**
 beautiful HTML5 presentations.
 Confetti provides a way to turn your slides in an amazing online presentation
-using any of supported themes but it also allows to let advanced CSS and
+using any of supported themes. It also allows to let advanced CSS and
 JavaScript for customized slide decks. Why not get started now?
 
 ## Installation
@@ -54,8 +54,8 @@ $ confetti server --dist
 
 ### Distribution
 Before you deploy your presentation, you need to build static HTML, CSS and JavaScript files.
-Confetti does that using the command build.
-
+Confetti does that using the command `` build ``.
+``
 ``` bash
 $ confetti build
 ```
@@ -161,7 +161,7 @@ path-to-your-deck/**data/images/**.
 
 #### Cover images
 You should provide each slide of a cover image. Put your cover images in the
-folder `` path-to-your-deck/**data/images `` and links them in your `` slide.md ``
+folder `` path-to-your-deck/data/images `` and links them in your `` slide.md ``
 file as described before.
 
 ## Official themes
