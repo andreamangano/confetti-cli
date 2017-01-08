@@ -9,6 +9,8 @@ Confetti provides a way to turn your slides in an amazing online presentation
 using any of supported themes. It also allows to let advanced CSS and
 JavaScript for customized slide decks. Why not get started now?
 
+[cover.jpg](https://postimg.org/image/vm606jntp/)
+
 ## Installation
 Install the library as any other global [npm](https://www.npmjs.com) package. Be sure to have npm, git and node installed. If your computer already has these, just install Confetti with npm:
 
@@ -61,7 +63,9 @@ $ confetti build
 ```
 
 Once you've built your HTML5 slide deck, it's time to share it with the world! 
-Since you are dealing with static assets, there are several hosting options available such as FTP, GitHub pages or cloud hosting. You're free to choose your favourite one!
+Since you are dealing with static assets, there are several hosting options
+available such as **FTP**, **GitHub pages** or **cloud hosting**. You're free
+ to choose your favourite one!
 
 ##### PLEASE NOTE: Remember you need to upload just the `` dist `` folder.
 
@@ -157,7 +161,7 @@ You can place the description slide here using the markdown conventions.
 The `` [slide] ``  notation is a delimiter for identifying each single slide inside the document.
 The data between the `` --- `` delimiters define the title of the slide and
 the cover image (both required). The image path is relative to
-path-to-your-deck/**data/images/**.
+`` path-to-your-deck/data/images/ ``.
 
 In order to make easier the editing of your slides, you might put a flag
 (e.g. the slide index) beside to the ``` [slide] ``` delimiter:
@@ -168,7 +172,7 @@ In order to make easier the editing of your slides, you might put a flag
 
 #### Cover images
 You should provide each slide of a cover image. Put your cover images in the
-folder `` path-to-your-deck/data/images `` and links them in your `` slide.md ``
+folder `` path-to-your-deck/data/images `` and links them in your `` slides.md ``
 file as described before.
 
 ## Official themes
