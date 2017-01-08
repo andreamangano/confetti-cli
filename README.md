@@ -2,7 +2,7 @@
 ### --[ The project is still under construction.]--
 ---
 
-Confetti is a static site generator that helps you to **enrich**,
+Confetti is the static site generator that helps you to **enrich**,
 **publish** and **share**
 beautiful HTML5 presentations.
 Confetti provides a way to turn your slides in an amazing online presentation
@@ -159,8 +159,8 @@ The data between the `` --- `` delimiters define the title of the slide and
 the cover image (both required). The image path is relative to
 path-to-your-deck/**data/images/**.
 
-In order to make easier the editing of your slides, you might put a number
-(corresponding to the slide index) beside to the ``` [slide] ``` delimiter:
+In order to make easier the editing of your slides, you might put a flag
+(e.g. the slide index) beside to the ``` [slide] ``` delimiter:
 
 ``` yaml
 [slide] 1
