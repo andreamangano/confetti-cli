@@ -83,7 +83,7 @@ title: Title of your beautiful presentation
 
 subtitle: Presentation subtitle
 
-# Relative path to <path-to-your-deck>/**data/images/**
+# The cover path is relative to <path-to-your-deck>/**data/images/**
 cover: cover-intro.jpg
 
 # Required
@@ -107,7 +107,7 @@ description: >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel aliquam eros,quis commodo arcu...
   </p>
 
-# (en_EN by default) 
+# (en_EN by default)
 lang: en_EN
 
 # Confetti uses Moment.js to parse and display date
@@ -121,16 +121,32 @@ meta:
   description: Description of your presentation
   tags:
     - tag 1
-    - tag2 
+    - tag2
     - ...
 
-# (voice theme by default) 
+# (voice theme by default)
 theme: voice
 
 # Theme config (if it has been provided for the selected theme)
 ...
 
 ```
+
+### Slide Info
+All the info relative to your slides are placed in the slides.md file (You can find it inside your project folder "path-to-your-deck/**data/slides.md**").
+Follows a sample definition of a single slide:
+
+``` markdown
+[slide]
+---
+title: Title of your slide
+cover: cover-slide.jpg
+---
+You can place the description slide here using the markdown conventions.
+```
+
+The `` [slide] ``  notation is a delimiter for identifying each single slide inside the document.
+The data between the `` --- `` delimiters define the title of the slide (required) and the optional cover image. The image path is relative to path-to-your-deck/**data/images/**.
 
 ## Official themes
 Confetti was born to give you a quick way to build a beautiful online presentation. The goal is providing a large number of themes for guaranteeing more customizing choises to your slide deck. Currently Confetti provides a default theme (named [Voice](https://github.com/andreamangano/confetti-theme-voice)) but new official themes are coming soon!
