@@ -64,13 +64,13 @@ Since you are dealing with static assets, there are several hosting options avai
 
 Once you have initialized your slide deck (see more in section “Installation”), the second step to move forward regards the data configuration. Confetti provides three different files to set your data:
 
-* **Basic settings** (<path-to-your-deck>/**settings.yml**)
-* **Slides info** (<path-to-your-deck>/**data/slides.md**)
+* **Basic settings** (path-to-your-deck/**settings.yml**)
+* **Slides info** (path-to-your-deck/**data/slides.md**)
 
 They are detailed below.
 
 ### Basic settings
-The basic settings file is located inside the root of your slide deck (<path-to-your-deck>/**settings.yml**) and you need edit it for changing of primary info about your presentation (e.g. title, subtitle, publishing date, author info, html meta, selected theme and its configuration).
+The basic settings file is located inside the root of your slide deck (path-to-your-deck/**settings.yml**) and you need edit it for changing of primary info about your presentation (e.g. title, subtitle, publishing date, author info, html meta, selected theme and its configuration).
 
 It's written in [YAML](http://yaml.org/) markup language in order to being more human friendly.
 
