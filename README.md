@@ -75,33 +75,33 @@ The basic settings file is located inside the root of your slide deck (<path-to-
 It's written in [YAML](http://yaml.org/) markup language in order to being more human friendly.
 
 ``` yaml
-    # You might put one or more categories
-    categories: [ category 1, category 2, ... ]
-    
-    # Required
-    title: Title of your beautiful presentation
-    
-    subtitle: Presentation subtitle
-    
-    # Relative path to <path-to-your-deck>/**data/images/**
-    cover: cover-intro.jpg
-    
-    # Required
-    author:
-      # Required
-      name: Author Name
-      role: Author role
-      picture: author-picture.jpg
-      
-    demo: url/to/demo
-    
-    material: url/to/material
+# You might put one or more categories
+categories: [ category 1, category 2, ... ]
 
-    # You might use html tags
-    description: >
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel aliquam eros,quis commodo arcu...
-      </p>
+# Required
+title: Title of your beautiful presentation
+
+subtitle: Presentation subtitle
+
+# Relative path to <path-to-your-deck>/**data/images/**
+cover: cover-intro.jpg
+
+# Required
+author:
+  # Required
+  name: Author Name
+  role: Author role
+  picture: author-picture.jpg
+
+demo: url/to/demo
+
+material: url/to/material
+
+# You might use html tags
+description: >
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel aliquam eros,quis commodo arcu...
+  </p>
 
 # (en_EN by default) 
 lang: en_EN
