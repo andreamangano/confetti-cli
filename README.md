@@ -159,6 +159,13 @@ The data between the `` --- `` delimiters define the title of the slide and
 the cover image (both required). The image path is relative to
 path-to-your-deck/**data/images/**.
 
+In order to make easier the editing of your slides, you might put a number
+(corresponding to the slide index) beside to the ``` [slide] ``` delimiter:
+
+``` yaml
+[slide] 1
+```
+
 #### Cover images
 You should provide each slide of a cover image. Put your cover images in the
 folder `` path-to-your-deck/data/images `` and links them in your `` slide.md ``
