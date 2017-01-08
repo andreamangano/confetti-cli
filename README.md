@@ -9,7 +9,7 @@ Confetti provides a way to turn your slides in an amazing online presentation
 using any of supported themes. It also allows to let advanced CSS and
 JavaScript for customized slide decks. Why not get started now?
 
-[cover.jpg](https://postimg.org/image/vm606jntp/)
+[![cover.jpg](https://s30.postimg.org/lc3l7axy9/cover.jpg)](https://postimg.org/image/vm606jntp/)
 
 ## Installation
 Install the library as any other global [npm](https://www.npmjs.com) package. Be sure to have npm, git and node installed. If your computer already has these, just install Confetti with npm:
