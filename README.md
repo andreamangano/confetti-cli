@@ -127,7 +127,7 @@ lang: en_EN
 # http://momentjs.com/docs/#/displaying/format/
 date_format: YYYY-MM-DD
 
-// Html meta to improve the search engines indexing
+# Html meta to improve the search engines indexing
 meta:
   title: Title of your beautiful presentation
   description: Description of your presentation

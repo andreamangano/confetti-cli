@@ -32,6 +32,7 @@ class BuildObserver {
 
   onServerInit(data) {
     logger.success('Confetti server is running...');
+    logger.info('Confetti is building the slide deck...');
     this.deck = data.deck;
     this.generator = new Generator(this.deck.paths, data.serveDist);
     this.generateDeck();
@@ -40,7 +41,7 @@ class BuildObserver {
   // TODO: improve copying only the file has been changed.
   onCoverChange(data) {
     logger.message(`File changed: ${data.path}`);
-    this.generator.copyCovers()
+    this.generator.compileDeckImages()
       .then(() => {
         logger.success('Covers have been copied.');
         if (data.cb) {
