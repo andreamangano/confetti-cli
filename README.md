@@ -17,7 +17,6 @@ JavaScript for customized slide decks. Why not get started now?
     0. [Quick start](#quick-start)
         0. [Setup your slide deck](#setup-your-slide-deck)
         0. [Start the server](#start-the-server)
-        0. [Theme development mode](#theme-development-mode)
         0. [Serve the dist folder](#serve-the-dist-folder)
     0. [Distribution](#distribution)
 0. [Configuration](#configuration)
@@ -26,6 +25,7 @@ JavaScript for customized slide decks. Why not get started now?
         0. [Cover images](#cover-images)
 0. [Theming](#theming)
     0. [Official themes](#official-themes)
+    0. [Change current theme](#change-current-theme)
 0. [Confetti ecosystem](#confetti-ecosystem)
 
 ## Installation
@@ -56,13 +56,6 @@ $ confetti server
 When run it will build the presentation starting from the settings and data
 files in the current folder in order to view and present.
 Be sure to run the command inside the your slide deck folder.
-
-#### Theme development mode
-If you are going to edit the current theme and see the changes **live**, you need to start the server in **development mode** adding the option `` --dev ``.
-
-``` bash
-$ confetti server --dev
-```
 
 #### Serve the dist folder
 Use the option `` --dist `` to serve the folder for distribution. This way you run the **optimised version** of your slide deck.
@@ -200,13 +193,36 @@ A typical theme folder structure looks like:
     │   ├── images              # Contains the images for theme (e.g. icons)
     │   ├── styles              # Contains Sass files
     │   └── javascripts         # Contains JavaScripts
-    ├── views                   # Contains index.pug (overview) and slide.pug (view to render a single slide)
+    ├── views                   # Contains index.pug (intro page) and slide.pug (view to render a single slide page)
     ├── languages               # Contains all available languages for the theme
     │   ├── ...
     │   ├── ...                 # e.g. language for the italian theme translations
     │   └── default.yml         # default translations (Usually in english)
     └── data.yml
 ```
+
+### Change current theme
+You might find yourself in one of the following cases:
+
+0. **You have already installed the theme you'd like set for your slide deck**:
+   Then just change the property ``` theme ``` into the basic file settings ``` path-to-your-deck/settings.yml ``` an restart the server (see the section [Start the server](#start-the-server)).
+
+    ``` yaml
+    theme: <theme-name>
+    ```
+    > In order to check if a theme is already installed (for your current slide deck), just look in the folder ``` <path-to-your-deck>/themes/ ```
+    
+0. **The theme is not already installed**:
+   Then clone the theme inside the folder themes (``` <path-to-your-deck>/themes/ ```) following the theme instructions on its repository. Back to the point 1.
+
+### Theme editing
+If you are going to edit the current theme and see the changes **live**, you need to start the server in **development mode** adding the option `` --dev ``.
+
+``` bash
+$ confetti server --dev
+```
+Then edit the styles, views, images and javascripts to achieve your goal (See [the typical theme folder structure](#theming) for futher information).
+In the case you want to make available the customised theme for all your decks, fork the theme and create your version. After install the theme as any other Confetti theme.
 
 ### Official themes
 Confetti was born to give you a quick way to build a beautiful online presentation. The goal is providing a large number of themes for guaranteeing more customizing choises to your slide deck. Currently Confetti provides a default theme (named [Voice](https://github.com/andreamangano/confetti-theme-voice)) but new official themes are coming soon!
