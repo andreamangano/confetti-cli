@@ -37,7 +37,8 @@
     "rimraf": "^2.5.4"
   },
   "files": [
-    "bin/"
+    "bin/",
+    "LICENSE"
   ],
   "bin": {
     "confetti": "./bin/index.js"
