@@ -53,6 +53,7 @@ Confetti includes a local server utility to allow quick live-previewing of the s
 ``` bash
 $ confetti server
 ```
+
 When run it will build the presentation starting from the settings and data
 files in the current folder in order to view and present.
 Be sure to run the command inside the your slide deck folder.
@@ -67,7 +68,7 @@ $ confetti server --dist
 ### Distribution
 Before you deploy your presentation, you need to build static HTML, CSS and JavaScript files.
 Confetti does that using the command `` build ``.
-``
+
 ``` bash
 $ confetti build
 ```
