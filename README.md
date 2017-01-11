@@ -12,6 +12,22 @@ JavaScript for customized slide decks. Why not get started now?
 
 [![cover.jpg](https://s30.postimg.org/lc3l7axy9/cover.jpg)](https://postimg.org/image/vm606jntp/)
 
+## Index
+0. [Installation](#installation)
+    0. [Quick start](#quick-start)
+        0. [Setup your slide deck](#setup-your-slide-deck)
+        0. [Start the server](#start-the-server)
+        0. [Theme development mode](#theme-development-mode)
+        0. [Serve the dist folder](#serve-the-dist-folder)
+    0. [Distribution](#distribution)
+0. [Configuration](#configuration)
+    0. [Basic settings](#basic-settings)
+    0. [Slides info](#slides-info)
+        0. [Cover images](#cover-images)
+0. [Theming](#theming)
+    0. [Official themes](#official-themes)
+0. [Confetti ecosystem](#confetti-ecosystem)
+
 ## Installation
 Install the library as any other global [npm](https://www.npmjs.com) package. Be sure to have npm, git and node installed. If your computer already has these, just install Confetti with npm:
 
@@ -145,7 +161,7 @@ theme: voice
 
 ```
 
-### Slides Info
+### Slides info
 All the info relative to your slides are placed in the slides.md file (You
 can find it inside your project folder `` path-to-your-deck/data/slides.md ``).
 Follows a sample definition of a single slide:
@@ -159,33 +175,24 @@ cover: cover-slide.jpg
 You can place the description slide here using the markdown conventions.
 ```
 
-The `` [slide] ``  notation is a delimiter for identifying each single slide inside the document.
-The data between the `` --- `` delimiters define the title of the slide and
-the cover image (both required). The image path is relative to
+> The `` [slide] ``  notation is a delimiter for identifying each single slide inside the document.
+> The data between the `` --- `` delimiters define the title of the slide and the cover image (both required). The image path is relative to
 `` path-to-your-deck/data/images/ ``.
 
-In order to make easier the editing of your slides, you might put a flag
-(e.g. the slide index) beside to the ``` [slide] ``` delimiter:
+In order to make easier the editing of your slides, you might put a flag (e.g. the slide index) beside to the ``` [slide] ``` delimiter:
 
 ``` yaml
 [slide] 1
 ```
 
 #### Cover images
-You should provide each slide of a cover image. Put your cover images in the
-folder `` path-to-your-deck/data/images `` and links them in your `` slides.md ``
-file as described before.
-
-## Official themes
-Confetti was born to give you a quick way to build a beautiful online presentation. The goal is providing a large number of themes for guaranteeing more customizing choises to your slide deck. Currently Confetti provides a default theme (named [Voice](https://github.com/andreamangano/confetti-theme-voice)) but new official themes are coming soon!
-
-If you would like embracing the project, feel free to create your theme for Confetti! I will be happy to mention it here.
+You should provide each slide of a cover image. Put your cover images in the folder `` path-to-your-deck/data/images `` and links them in your `` slides.md `` file as described before.
 
 ## Theming
 A large part of the power of Confetti comes in the ability to quickly and easily develop themes. They allows you to customize the look and feel of your presentation. It will require a good knowledge about web design, HTML, CSS, and (sometime) JavaScript.
 Confetti uses the PUG template engine and SASS processed languages by default.
 
-A common theme folder structure looks like:
+A typical theme folder structure looks like:
 ```
     .
     ├── ...
@@ -200,6 +207,11 @@ A common theme folder structure looks like:
     │   └── default.yml         # default translations (Usually in english)
     └── data.yml
 ```
+
+### Official themes
+Confetti was born to give you a quick way to build a beautiful online presentation. The goal is providing a large number of themes for guaranteeing more customizing choises to your slide deck. Currently Confetti provides a default theme (named [Voice](https://github.com/andreamangano/confetti-theme-voice)) but new official themes are coming soon!
+
+If you would like embracing the project, feel free to create your theme for Confetti! I will be happy to mention it here.
 
 ## Confetti Ecosystem
 Confetti is a open source library composed by different functional packages. Confetti-cli is the master repository for all deck repositories listed below:
