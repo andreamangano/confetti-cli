@@ -10,7 +10,7 @@ class BuildObserver {
     this.generator = null;
     this.loader = new Loader();
     this.subject.addListener('serverInit', data => this.onServerInit(data));
-    this.subject.addListener('coverChange', data => this.onCoverChange(data));
+    this.subject.addListener('onDeckImagesChange', data => this.onDeckImagesChange(data));
     this.subject.addListener('stylesChange', data => this.onStylesChange(data));
     this.subject.addListener('viewsChange', data => this.onViewsChange(data));
     this.subject.addListener('javascriptChange', data => this.onJavascriptChange(data));
@@ -31,19 +31,19 @@ class BuildObserver {
   }
 
   onServerInit(data) {
-    logger.success('Confetti server is running...');
-    logger.info('Confetti is building the slide deck...');
+    logger.success('Server is running...');
+    logger.info('The deck is building...');
     this.deck = data.deck;
     this.generator = new Generator(this.deck.paths, data.serveDist);
     this.generateDeck();
   }
 
   // TODO: improve copying only the file has been changed.
-  onCoverChange(data) {
+  onDeckImagesChange(data) {
     logger.message(`File changed: ${data.path}`);
     this.generator.compileDeckImages()
       .then(() => {
-        logger.success('Covers have been copied.');
+        logger.success('Deck images have been copied and the covers resized.');
         if (data.cb) {
           data.cb();
         }
@@ -79,7 +79,7 @@ class BuildObserver {
     logger.message(`File changed: ${data.path}`);
     this.generator.compileJavascripts()
       .then(() => {
-        logger.success('Javasacripts have been updated.');
+        logger.success('Javascripts have been updated.');
         if (data.cb) {
           data.cb();
         }

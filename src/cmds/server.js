@@ -71,7 +71,7 @@ exports.handler = argv => {
            */
           bsInstance.watch(configLoader.paths.covers, watchersCommonOptions).on('all', (event, path) => {
             if (event === 'add' || event === 'change') {
-              observable.emit('coverChange', {path, cb: () => bsInstance.reload()});
+              observable.emit('onDeckImagesChange', {path, cb: () => bsInstance.reload()});
             }
           });
           if (argv.dev) {
@@ -87,12 +87,12 @@ exports.handler = argv => {
             });
             bsInstance.watch(deckData.paths.sources.images, watchersCommonOptions).on('all', (event, path) => {
               if (event === 'add' || event === 'change') {
-                observable.emit('imagestChange', {path, cb: () => bsInstance.reload()});
+                observable.emit('imagesChange', {path, cb: () => bsInstance.reload()});
               }
             });
             bsInstance.watch(deckData.paths.sources.fonts, watchersCommonOptions).on('all', (event, path) => {
               if (event === 'add' || event === 'change') {
-                observable.emit('fontstChange', {path, cb: () => bsInstance.reload()});
+                observable.emit('fontsChange', {path, cb: () => bsInstance.reload()});
               }
             });
           }
