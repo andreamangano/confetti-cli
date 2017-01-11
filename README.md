@@ -186,17 +186,20 @@ A large part of the power of Confetti comes in the ability to quickly and easily
 Confetti uses the PUG template engine and SASS processed languages by default.
 
 A common theme folder structure looks like:
+```
     .
     ├── ...
     ├── assets
     │   ├── images              # Contains the images for theme (e.g. icons)
     │   ├── styles              # Contains Sass files
     │   └── javascripts         # Contains JavaScripts
-    ├── views                   # Conaintas index.pug (overview) and slide.pug (view to render a single slide)
-    ├── languages
-    │   ├── ...                 # language file e.g. it_IT.yml (italian theme translations)
+    ├── views                   # Contains index.pug (overview) and slide.pug (view to render a single slide)
+    ├── languages               # Contains all available languages for the theme
+    │   ├── ...
+    │   ├── ...                 # e.g. language for the italian theme translations
     │   └── default.yml         # default translations (Usually in english)
     └── data.yml
+```
 
 ## Confetti Ecosystem
 Confetti is a open source library composed by different functional packages. Confetti-cli is the master repository for all deck repositories listed below:
