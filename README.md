@@ -1,5 +1,6 @@
 # Confetti enriches your slide deck.
 ### --[ The project is still under construction.]--
+[![npm version](https://badge.fury.io/js/confetti-cli.svg)](http://badge.fury.io/js/confetti-cli)
 ---
 
 Confetti is the static site generator that helps you to **enrich**,
@@ -179,6 +180,23 @@ file as described before.
 Confetti was born to give you a quick way to build a beautiful online presentation. The goal is providing a large number of themes for guaranteeing more customizing choises to your slide deck. Currently Confetti provides a default theme (named [Voice](https://github.com/andreamangano/confetti-theme-voice)) but new official themes are coming soon!
 
 If you would like embracing the project, feel free to create your theme for Confetti! I will be happy to mention it here.
+
+## Theming
+A large part of the power of Confetti comes in the ability to quickly and easily develop themes. They allows you to customize the look and feel of your presentation. It will require a good knowledge about web design, HTML, CSS, and (sometime) JavaScript.
+Confetti uses the PUG template engine and SASS processed languages by default.
+
+A common theme folder structure looks like:
+    .
+    ├── ...
+    ├── assets
+    │   ├── images              # Contains the images for theme (e.g. icons)
+    │   ├── styles              # Contains Sass files
+    │   └── javascripts         # Contains JavaScripts
+    ├── views                   # Conaintas index.pug (overview) and slide.pug (view to render a single slide)
+    ├── languages
+    │   ├── ...                 # language file e.g. it_IT.yml (italian theme translations)
+    │   └── default.yml         # default translations (Usually in english)
+    └── data.yml
 
 ## Confetti Ecosystem
 Confetti is a open source library composed by different functional packages. Confetti-cli is the master repository for all deck repositories listed below:
