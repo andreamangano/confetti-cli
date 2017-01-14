@@ -10,23 +10,26 @@ Confetti provides a way to turn your slides in an amazing online presentation
 using any of supported themes. It also allows to let advanced CSS and
 JavaScript for customized slide decks. Why not get started now?
 
+**[See the online demo!](https://andreamangano.github.io/confetti-demo/)**
+
 [![cover.jpg](https://s30.postimg.org/lc3l7axy9/cover.jpg)](https://postimg.org/image/vm606jntp/)
 
 ## Index
-0. [Installation](#installation)
-    0. [Quick start](#quick-start)
-        0. [Setup your slide deck](#setup-your-slide-deck)
-        0. [Start the server](#start-the-server)
-        0. [Serve the dist folder](#serve-the-dist-folder)
-    0. [Distribution](#distribution)
-0. [Configuration](#configuration)
-    0. [Basic settings](#basic-settings)
-    0. [Slides info](#slides-info)
-        0. [Cover images](#cover-images)
-0. [Theming](#theming)
-    0. [Official themes](#official-themes)
-    0. [Change current theme](#change-current-theme)
-0. [Confetti ecosystem](#confetti-ecosystem)
+* **[Online demo](https://andreamangano.github.io/confetti-demo/)**
+* [Installation](#installation)
+    * [Quick start](#quick-start)
+        * [Setup your slide deck](#setup-your-slide-deck)
+        * [Start the server](#start-the-server)
+        * [Serve the dist folder](#serve-the-dist-folder)
+    * [Distribution](#distribution)
+* [Configuration](#configuration)
+    * [Basic settings](#basic-settings)
+    * [Slides info](#slides-info)
+        * [Cover images](#cover-images)
+* [Theming](#theming)
+    * [Official themes](#official-themes)
+    * [Change current theme](#change-current-theme)
+* [Confetti ecosystem](#confetti-ecosystem)
 
 ## Installation
 Install the library as any other global [npm](https://www.npmjs.com) package. Be sure to have npm, git and node installed. If your computer already has these, just install Confetti with npm:
