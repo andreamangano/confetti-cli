@@ -144,9 +144,9 @@ meta:
     - tag 2
     - ...
 
-# If your website is in a subdirectory (such as http://mysite.org/mypresentation)
-# set release_prefix to mypresentation/
-release_prefix: mypresentation/
+# If your slide deck is in a subdirectory (such as http://mysite.org/mydeck)
+# set release_prefix to mydeck/
+release_prefix: mydeck/
 
 # Theme name (voice theme by default)
 theme: voice
