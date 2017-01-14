@@ -133,10 +133,7 @@ description: >
 # Language used in your presentation (en_EN by default)
 lang: en_EN
 
-# Confetti uses Moment.js to parse and display date
-# You can customize the date format as defined in
-# http://momentjs.com/docs/#/displaying/format/
-date_format: YYYY-MM-DD
+date: January 2017
 
 # Html meta to improve the search engines indexing
 meta:
