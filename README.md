@@ -144,7 +144,11 @@ meta:
     - tag 2
     - ...
 
-# (voice theme by default)
+# If your website is in a subdirectory (such as http://mysite.org/mypresentation)
+# set release_prefix to mypresentation/
+release_prefix: mypresentation/
+
+# Theme name (voice theme by default)
 theme: voice
 
 # Theme config (if it has been provided for the selected theme)
