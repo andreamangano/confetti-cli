@@ -239,15 +239,19 @@ need to start the server in **development mode** adding the option ` --dev `.
 ``` bash
 $ confetti server --dev
 ```
-Then edit the styles, views, images and javascripts to achieve your goal (See [the typical theme folder structure](#theming) for futher information).
+Then edit the styles, views, images and javascripts to achieve your goal (See
+ [the typical theme folder structure](#theming) for further information).
 In the case you want to make available the customised theme for all your decks, fork the theme and create your version. After install the theme as any other Confetti theme.
 
 ### Theme locals
 
-Locals are passed to theme templates by a javascript object. Follows an
-example with all data that the template could received.
-> Remember to check the optional parameters whenever you get them from your
-template.
+Locals are passed to theme page templates by using a javascript object.
+
+#### Common template locals
+Follows an example with all data that the page templates (` index.pug ` and `
+ slide.pug `, inside the theme folder) could received.
+> Remember to check the existence of the optional parameters whenever you
+get them from your template.
 
 ``` javascript
 {
@@ -292,7 +296,7 @@ template.
             deckImages: '...',
             covers: '...'
         }
-    },
+    }, // Relative path to the assets
     releasePrefix: '...',
     themeConfig: [Object],
     translations: {
@@ -300,6 +304,49 @@ template.
         label2: '...'
   }
 ```
+
+#### Additional parameters for the slide template
+The ` slide.pug ` template receives additional data to render the page:
+
+##### Current slide object
+
+``` javascript
+slide: {
+    title: '...',
+    cover: {
+        file: '...',
+        format: {
+            original: '...' // Relative url
+            small: '...' // Relative url
+        }
+    },
+    description: '...',
+    index: [Number],
+    url: '...',
+    path: '...'
+}
+```
+
+##### SlideNav object
+``` javascript
+    sliderNav: {
+        next: {
+            data: [Object Slide],
+            index: [Number]
+        }, // It could be null (The current slide is the last one)
+        prev: {
+            data: [Object Slide],
+            index: [Number]
+        }, // It could be null (The current slide is the first one)
+        current: { data: [Object], index: 6 },
+        total: [Number], total number of slide
+        hasNext: [Function: hasNext], // Returns a boolen
+        hasPrev: [Function: hasPrev], // Returns a boolen
+        percentage: [Number] // Progress percentage
+    }
+
+```
+
 
 
 
