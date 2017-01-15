@@ -59,7 +59,19 @@ $ confetti server
 
 When run it will build the presentation starting from the settings and data
 files in the current folder in order to view and present.
-Be sure to run the command inside the your slide deck folder.
+
+> Be sure to run the command inside the your slide deck folder root.
+
+> If you are using ` release_prefix ` on your config file (See section  [` Configuration `](#configuration))
+be careful to add the value of release_prefix to the local server url. Example:
+
+```
+// Your release_prefix var is set to 'my-deck-folder'
+release_prefix = my-deck-folder
+
+// Access to your slide deck at:
+http://localhost:3000/my-deck-folder
+```
 
 #### Serve the dist folder
 Use the option ` --dist ` to serve the folder for distribution. This way you run the **optimised version** of your slide deck.
@@ -271,22 +283,25 @@ template.
         {...},
         {...}
     ],
-  paths:
-     to:
-      { base: '...',
-        styles: '...',
-        javascript: '...',
-        images: '...',
-        deckImages: '...',
-        covers: '...' }
-  },
-  releasePrefix: '...',
-  themeConfig: [Object],
-  translations: {
+    paths:
+        to:
+        {
+            styles: '...',
+            javascript: '...',
+            images: '...',
+            deckImages: '...',
+            covers: '...'
+        }
+    },
+    releasePrefix: '...',
+    themeConfig: [Object],
+    translations: {
         label: '...',
         label2: '...'
   }
 ```
+
+
 
 ### Official themes
 Confetti was born to give you a quick way to build a beautiful online presentation. The goal is providing a large number of themes for guaranteeing more customizing choises to your slide deck. Currently Confetti provides a default theme (named [Voice](https://github.com/andreamangano/confetti-theme-voice)) but new official themes are coming soon!
