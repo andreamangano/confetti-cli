@@ -1,6 +1,6 @@
 {
   "name": "confetti-cli",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Command line interface for Confetti, a tool for enriching your online slide decks.",
   "scripts": {
     "clean": "rimraf ./bin/*",
