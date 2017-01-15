@@ -227,7 +227,8 @@ You might find yourself in one of the following cases:
     ``` yaml
     theme: <theme-name>
     ```
-    > In order to check if a theme is already installed (for your current slide deck), just look in the folder ` <path-to-your-deck>/themes/ `
+    > In order to check if a given theme is already installed (for your current
+    slide deck), just look in the folder ` <path-to-your-deck>/themes/ `
     
 0. **The theme is not already installed**:
    Then clone the theme inside the folder themes (` <path-to-your-deck>/themes/ `) following the theme instructions on its repository. Back to the point 1.
@@ -329,25 +330,22 @@ slide: {
 
 ##### SlideNav object
 ``` javascript
-    sliderNav: {
-        next: {
-            data: [Object Slide],
-            index: [Number]
-        }, // It could be null (The current slide is the last one)
-        prev: {
-            data: [Object Slide],
-            index: [Number]
-        }, // It could be null (The current slide is the first one)
-        current: { data: [Object], index: 6 },
-        total: [Number], total number of slide
-        hasNext: [Function: hasNext], // Returns a boolen
-        hasPrev: [Function: hasPrev], // Returns a boolen
-        percentage: [Number] // Progress percentage
-    }
-
+sliderNav: {
+    next: {
+        data: [Object Slide],
+        index: [Number]
+    }, // It could be null (The current slide is the last one)
+    prev: {
+        data: [Object Slide],
+        index: [Number]
+    }, // It could be null (The current slide is the first one)
+    current: { data: [Object], index: 6 },
+    total: [Number], // Total number of slides
+    hasNext: [Function: hasNext], // Returns a boolen
+    hasPrev: [Function: hasPrev], // Returns a boolen
+    percentage: [Number] // Progress percentage
+}
 ```
-
-
 
 
 ### Official themes
