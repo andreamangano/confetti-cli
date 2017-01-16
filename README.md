@@ -10,7 +10,9 @@ Confetti provides a way to turn your slides in an amazing online presentation
 using any of supported themes. It also allows to let advanced CSS and
 JavaScript for customized slide decks. Why not get started now?
 
-**[See the online demo!](https://andreamangano.github.io/confetti-demo/)**
+- **[See the online demo!](https://andreamangano.github.io/confetti-demo/)**
+- **[See the online documentation](https://andreamangano.github.io/confetti-cli)**
+
 
 [![cover.jpg](https://s30.postimg.org/lc3l7axy9/cover.jpg)](https://postimg.org/image/vm606jntp/)
 
@@ -39,6 +41,9 @@ Confetti includes a local server utility to allow quick live-previewing of the s
 ``` bash
 $ confetti server
 ```
+
+## Docs
+For detailed usage please head to https://andreamangano.github.io/confetti-cli
 
 ## Author
 
