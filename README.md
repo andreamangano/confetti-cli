@@ -49,7 +49,7 @@ For detailed usage please head to https://andreamangano.github.io/confetti-cli
 
 **Confetti** © Andrea Mangano, Released under the [MIT License](LICENSE).
 
-> [andreamangano.com](https://andreamangano.com) · Twitter [@andreaman87](https://twitter.com/andreaman87)
+> [andreamangano.com](http://andreamangano.com) · Twitter [@andreaman87](https://twitter.com/andreaman87)
 
 ## License
 
