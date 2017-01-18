@@ -14,8 +14,7 @@ JavaScript for customized slide decks. Why not get started now?
 - **[See the online demo!](https://andreamangano.github.io/confetti-demo/)**
 - **[See the online documentation](https://andreamangano.github.io/confetti-cli)**
 
-
-[![cover.jpg](https://s30.postimg.org/lc3l7axy9/cover.jpg)](https://postimg.org/image/vm606jntp/)
+![cover.jpg](http://s26.postimg.org/nemahzokp/confetti_theme_preview_2.jpg)
 
 ## Installation
 Install the library as any other global [npm](https://www.npmjs.com) package. Be sure to have npm, git and node installed. If your computer already has these, just install Confetti with npm:
