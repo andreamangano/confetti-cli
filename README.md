@@ -1,7 +1,8 @@
 # Confetti enriches your slide deck.
 [![npm version](https://badge.fury.io/js/confetti-cli.svg)](http://badge.fury.io/js/confetti-cli)
 
-> **[ The project is still under construction.]**
+> **[ Please note: The project is still under construction. It's not a stable
+ version. :) ]**
 
 Confetti is the static site generator that helps you to **enrich**,
 **publish** and **share**
