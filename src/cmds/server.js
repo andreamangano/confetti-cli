@@ -12,8 +12,7 @@ import bs from 'browser-sync';
 bs.create('server');
 const loader = new Loader();
 
-const serve = argv => {
-  const SERVE_FOLDER = argv.dist ? config.DIST_FOLDER : config.DEV_FOLDER;
+const serve = (argv, serveFolder) => {
   const observable = new EventEmitter();
   const serveDist = Boolean(argv.dist);
   const builObserver = new BuildObserver(1, observable);
@@ -30,7 +29,7 @@ const serve = argv => {
     .then(deckData => {
       const bsInstance = bs.get('server');
       bsInstance.init({
-        server: SERVE_FOLDER,
+        server: serveFolder,
         open: false,
         logPrefix: 'Confetti'
       });
@@ -102,16 +101,15 @@ exports.builder = {
 };
 exports.desc = `Serve the compiled deck folder`;
 exports.handler = argv => {
-  if (argv.dist) {
-    serve(argv);
-  } else {
-    del(config.DEV_FOLDER)
-      .then(() => {
-        serve(argv);
-      })
-      .catch(error => {
-        logger.error(error);
-        shell.exit(1);
-      });
-  }
+  const SERVE_FOLDER = argv.dist ? config.DIST_FOLDER : config.DEV_FOLDER;
+  // Delete all files (not structure folder) excepted hidden files (e.g. .git)
+  // It is useful when you are going to version your dist folder
+  del(`${SERVE_FOLDER}/**/*.*`)
+    .then(() => {
+      serve(argv, SERVE_FOLDER);
+    })
+    .catch(error => {
+      logger.error(error);
+      shell.exit(1);
+    });
 };
