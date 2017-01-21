@@ -38,17 +38,20 @@ class BuildObserver {
     this.generateDeck();
   }
 
-  // TODO: improve copying only the file has been changed.
   onDeckImagesChange(data) {
-    logger.message(`File changed: ${data.path}`);
-    this.generator.compileDeckImages()
-      .then(() => {
-        logger.success('Deck images have been copied and the covers resized.');
-        if (data.cb) {
-          data.cb();
-        }
-      })
-      .catch(error => logger.error(error));
+    if (data.event === 'change' || data.event === 'add') {
+      logger.message(`File ${data.event === 'change' ? 'changed' : 'added'}: ${data.path}`);
+      this.generator.compileDeckImages(data.path, this.deck.paths.destinations.covers)
+        .then(() => {
+          logger.success('Deck image has been updated.');
+          if (data.cb) {
+            data.cb();
+          }
+        })
+        .catch(error => logger.error(error));
+    } else if (data.event === 'unlink') {
+      logger.message(`File deck image deleted: ${data.path}`);
+    }
   }
 
   onStylesChange(data) {
@@ -76,20 +79,24 @@ class BuildObserver {
   }
 
   onJavascriptChange(data) {
-    logger.message(`File changed: ${data.path}`);
-    this.generator.compileJavascripts()
-      .then(() => {
-        logger.success('JavaScript has been updated.');
-        if (data.cb) {
-          data.cb();
-        }
-      })
-      .catch(error => logger.error(error));
+    if (data.event === 'change' || data.event === 'add') {
+      logger.message(`File ${data.event === 'change' ? 'changed' : 'added'}: ${data.path}`);
+      this.generator.compileJavascripts(data.path)
+        .then(() => {
+          logger.success('JavaScript has been updated.');
+          if (data.cb) {
+            data.cb();
+          }
+        })
+        .catch(error => logger.error(error));
+    } else if (data.event === 'unlink') {
+      logger.message(`File JavaScript deleted: ${data.path}`);
+    }
   }
 
   onImagesChange(data) {
     if (data.event === 'change' || data.event === 'add') {
-      logger.message(`File changed: ${data.path}`);
+      logger.message(`File ${data.event === 'change' ? 'changed' : 'added'}: ${data.path}`);
       this.generator.copyImages(data.path)
         .then(() => {
           logger.success('Image has been updated.');
@@ -99,21 +106,24 @@ class BuildObserver {
         })
         .catch(error => logger.error(error));
     } else if (data.event === 'unlink') {
-      logger.message(`File deleted: ${data.path}`);
+      logger.message(`File image deleted: ${data.path}`);
     }
   }
 
-  // TODO: improve copying only the file has been changed.
   onFontsChange(data) {
-    logger.message(`File changed: ${data.path}`);
-    this.generator.copyFonts()
-      .then(() => {
-        logger.success('Fonts have been copied.');
-        if (data.cb) {
-          data.cb();
-        }
-      })
-      .catch(error => logger.error(error));
+    if (data.event === 'change' || data.event === 'add') {
+      logger.message(`File ${data.event === 'change' ? 'changed' : 'added'}: ${data.path}`);
+      this.generator.copyFonts(data.path)
+        .then(() => {
+          logger.success('Font has been updated.');
+          if (data.cb) {
+            data.cb();
+          }
+        })
+        .catch(error => logger.error(error));
+    } else if (data.event === 'unlink') {
+      logger.message(`File font deleted: ${data.path}`);
+    }
   }
 
   onSettingsChange(data) {

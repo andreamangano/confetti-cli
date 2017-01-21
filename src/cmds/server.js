@@ -47,37 +47,84 @@ const serve = (argv, serveFolder) => {
         configLoader.paths.slides,
         path.join(configLoader.paths.themes, deckData.theme, 'data.yml')
       ], watchersCommonOptions).on('change', path => {
-        observable.emit('settingsChange', {path, serveDist, cb: () => bsInstance.reload()});
+        observable.emit(
+          'settingsChange',
+          {path, serveDist, cb: () => bsInstance.reload()});
       });
       /*
        Watch the folder where the covers are.
        */
-      bsInstance.watch(configLoader.paths.covers, watchersCommonOptions).on('all', (event, path) => {
-        if (event === 'add' || event === 'change') {
-          observable.emit('onDeckImagesChange', {path, cb: () => bsInstance.reload()});
-        }
-      });
+      bsInstance.watch(
+        path.join(configLoader.paths.covers, '**', '*.{svg,png,jpg,jpeg,gif}'),
+        watchersCommonOptions)
+          .on('all', (event, path) => {
+            observable.emit(
+              'onDeckImagesChange',
+              {event, path, cb: () => bsInstance.reload()});
+          });
+
       if (argv.dev) {
         logger.info('Theme development mode enabled.');
-        bsInstance.watch(deckData.paths.sources.styles, watchersCommonOptions).on('all', (event, path) => {
-          observable.emit('stylesChange', {path, cb: () => bsInstance.reload()});
-        });
-        bsInstance.watch(deckData.paths.sources.views, watchersCommonOptions).on('all', (event, path) => {
-          observable.emit('viewsChange', {path, cb: () => bsInstance.reload()});
-        });
-        bsInstance.watch(deckData.paths.sources.javascript, watchersCommonOptions).on('all', (event, path) => {
-          observable.emit('javascriptChange', {path, cb: () => bsInstance.reload()});
-        });
-        bsInstance.watch(deckData.paths.sources.images, watchersCommonOptions).on('all', (event, path) => {
-          if (event === 'add' || event === 'change') {
-            observable.emit('imagesChange', {path, cb: () => bsInstance.reload()});
-          }
-        });
-        bsInstance.watch(deckData.paths.sources.fonts, watchersCommonOptions).on('all', (event, path) => {
-          if (event === 'add' || event === 'change') {
-            observable.emit('fontsChange', {path, cb: () => bsInstance.reload()});
-          }
-        });
+
+        /*
+          Watchers for styles
+          */
+        bsInstance.watch(
+          deckData.paths.sources.styles,
+          watchersCommonOptions)
+            .on('all', (event, path) => {
+              observable.emit(
+                'stylesChange',
+                {event, path, cb: () => bsInstance.reload()});
+            });
+
+        /*
+          Watchers for theme views
+          */
+        bsInstance.watch(
+          deckData.paths.sources.views,
+          watchersCommonOptions)
+            .on('all', (event, path) => {
+              observable.emit(
+                'viewsChange',
+                {event, path, cb: () => bsInstance.reload()});
+            });
+
+        /*
+          Watchers for theme javascript files
+          */
+        bsInstance.watch(
+          path.join(deckData.paths.sources.javascript, '**', '*.js'),
+          watchersCommonOptions)
+            .on('all', (event, path) => {
+              observable.emit(
+                'javascriptChange',
+                {event, path, cb: () => bsInstance.reload()});
+            });
+
+        /*
+          Watchers for user images
+          */
+        bsInstance.watch(
+          path.join(deckData.paths.sources.images, '**', '*.{svg,png,jpg,jpeg,gif}'),
+          watchersCommonOptions)
+            .on('all', (event, path) => {
+              observable.emit(
+                'imagesChange',
+                {event, path, cb: () => bsInstance.reload()});
+            });
+
+        /*
+          Watchers for theme fonts
+        */
+        bsInstance.watch(
+          path.join(deckData.paths.sources.fonts, '**', '*.{eot,ttf,otf,woff,svg}'),
+          watchersCommonOptions)
+            .on('all', (event, path) => {
+              observable.emit(
+                'fontsChange',
+                {event, path, cb: () => bsInstance.reload()});
+            });
       }
     })
     .catch(error => {
