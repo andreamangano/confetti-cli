@@ -270,7 +270,7 @@ get them from your template.
         {   title: '...',
             cover: [Object],
             description: '...',
-            index: 1,
+            index: [Number],
             url: '...',
             path: '...'
         },
