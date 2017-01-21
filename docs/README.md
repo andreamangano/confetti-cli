@@ -136,7 +136,7 @@ date: January 2017
 meta:
   title: Title of your beautiful presentation
   description: Description of your presentation
-  tags:
+  keywords:
     - tag 1
     - tag 2
     - ...
@@ -242,7 +242,13 @@ get them from your template.
     categories: ['...', '...', ...]
     title: '...',
     subtitle: '...',
-    cover: '...'
+    cover: {
+        file: '...',
+        format: {
+           original: '...' // Relative url
+           small: '...' // Relative url
+        }
+    }
     author: {
         name: '...',
         role: '...',
