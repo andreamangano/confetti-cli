@@ -79,7 +79,7 @@ class BuildObserver {
     logger.message(`File changed: ${data.path}`);
     this.generator.compileJavascripts()
       .then(() => {
-        logger.success('Javascripts have been updated.');
+        logger.success('JavaScript has been updated.');
         if (data.cb) {
           data.cb();
         }
@@ -87,17 +87,20 @@ class BuildObserver {
       .catch(error => logger.error(error));
   }
 
-  // TODO: improve copying only the file has been changed.
   onImagesChange(data) {
-    logger.message(`File changed: ${data.path}`);
-    this.generator.copyImages()
-      .then(() => {
-        logger.success('Images have been copied.');
-        if (data.cb) {
-          data.cb();
-        }
-      })
-      .catch(error => logger.error(error));
+    if (data.event === 'change' || data.event === 'add') {
+      logger.message(`File changed: ${data.path}`);
+      this.generator.copyImages(data.path)
+        .then(() => {
+          logger.success('Image has been updated.');
+          if (data.cb) {
+            data.cb();
+          }
+        })
+        .catch(error => logger.error(error));
+    } else if (data.event === 'unlink') {
+      logger.message(`File deleted: ${data.path}`);
+    }
   }
 
   // TODO: improve copying only the file has been changed.
