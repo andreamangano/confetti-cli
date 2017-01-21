@@ -263,7 +263,7 @@ get them from your template.
     meta: {
         title: '...',
         description: '...',
-        tags: [ '...', '...', ... ]
+        keywords: [ '...', '...', ... ]
     },
     theme: '...',
     slides: [
