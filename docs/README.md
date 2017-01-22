@@ -1,3 +1,5 @@
+![confetti-logo.png](confetti-logo.png)
+
 # Confetti enriches your slide deck.
 [![npm version](https://badge.fury.io/js/confetti-cli.svg)](http://badge.fury.io/js/confetti-cli)
 
