@@ -1,3 +1,5 @@
+![confetti-logo.png](./docs/confetti-logo.png)
+
 # Confetti enriches your slide deck.
 [![npm version](https://badge.fury.io/js/confetti-cli.svg)](http://badge.fury.io/js/confetti-cli)
 
@@ -50,6 +52,9 @@ For detailed usage please head to https://andreamangano.github.io/confetti-cli
 **Confetti** © Andrea Mangano, Released under the [MIT License](LICENSE).
 
 > [andreamangano.com](http://andreamangano.com) · Twitter [@andreaman87](https://twitter.com/andreaman87)
+
+## Contributors
+Special thanks to [Paul Jesus Benites Romero](https://www.linkedin.com/in/pauljesusbenitesromero) for creating the logo "confetti".
 
 ## License
 
